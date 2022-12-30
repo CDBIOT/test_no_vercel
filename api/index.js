@@ -1,22 +1,24 @@
 
-const { Router } = 'express';
+import { Router } from 'express';
 import express from 'express';
 const app = express();
 
+const route = Router();
+
 
 //Read
-app.get('/', async (req, res) =>{
-    try{
-        await Person.create(person)
-        res.status(201).json({message: "Pessoa inserida com sucesso"})
-    }catch(error){
-        res.status(200).json({message: "Error no Status"})
-    }  
+route.get('/', (req, res) =>{
+        res.json({
+            sucess: true,
+            message: "Sucesso"
+        })
 })
 
 
-const PORT = process.env.PORT || 4000 || 5500;
+app.use (route)
+
+const PORT = 4000 ;
     app.listen(PORT,function(){
-        console.log("Servidor Rodando" + 4000);
+        console.log("Servidor Rodando" + PORT);
         })
 

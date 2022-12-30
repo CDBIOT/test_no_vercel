@@ -1,17 +1,16 @@
 {
-    "name": "teste_no_vercel",
+    "name": "teste-no-vercel",
     "version": 2,
-    "build":[
-        {
+    "public": true,
+    "build":
+     {
         "src": "api/index.js",
         "use": "@vercel/node"
-         }
-    ],
+         },
     "routes":[
         {
         "src": "/(.*)",
-        "dest":"api/index.js"
-        }
-    ]
-        
+        "dest": "api/index.js"
+        }       
+    ] 
 }

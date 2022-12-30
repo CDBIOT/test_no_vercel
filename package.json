@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "test-no-vercel",
   "version": "1.0.0",
   "description": "",
   "main": "api/index.js",
@@ -8,7 +8,7 @@
     "node":"16.18.1"
   },
   "scripts": {
-    "start": "node .",
+    "start": "node index.js",
     "dev": "nodemon api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
