@@ -10,7 +10,7 @@ app.get('/', async (req, res) =>{
         await Person.create(person)
         res.status(201).json({message: "Pessoa inserida com sucesso"})
     }catch(error){
-        res.status(500).json({message: "Error no Status"})
+        res.status(200).json({message: "Error no Status"})
     }  
 })
 
