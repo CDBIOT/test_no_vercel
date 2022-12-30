@@ -17,8 +17,7 @@ route.get('/', (req, res) =>{
 
 app.use (route)
 
-const PORT = 4000 ;
-    app.listen(PORT,function(){
-        console.log("Servidor Rodando" + PORT);
+    app.listen(4000,()=>{
+        console.log("Servidor Rodando" + 4000);
         })
 
