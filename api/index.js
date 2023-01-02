@@ -2,16 +2,14 @@
 
 const express = require('express');
 const app = express();
-const route = express.Router();
+const route = express.Router('./rotas_temps','./rotas_user');
 const Temps = require('../temps')
-
-
 
 //Read
 route.get('/', (req, res) =>{
         res.json({
             sucess: true,
-            message: "Sucesso"
+            message: "Sucesso na conexão "
         })
 })
 
@@ -22,7 +20,7 @@ route.get('/temps', async (req, res) =>{
        const temps = await Temps.find()
         res.status(200).json({temps})
     }catch(error){
-        res.status(500).json({error: error})
+        res.status(500).json({ message: "No Sucess!"})
     }  
 })
 
