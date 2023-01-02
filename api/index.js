@@ -1,11 +1,10 @@
 
-import { Router } from 'express';
-import express from 'express';
+
+const express = require('express');
 const app = express();
+const route = express.Router();
+const Temps = require('../temps')
 
-const Temps = require('./temps')
-
-const route = Router();
 
 
 //Read
@@ -27,10 +26,10 @@ route.get('/temps', async (req, res) =>{
     }  
 })
 
-
+const port = process.env.PORT || 4000;
 app.use (route)
 
-    app.listen(4000,()=>{
-        console.log("Servidor Rodando" + 4000);
+    app.listen(port,()=>{
+        console.log("Servidor Rodando" + `${port}`);
         })
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const db_atlas = require('../../Node/polar-beyond-82520/db_atlas')
+const db_atlas = require('./db_atlas')
 //Configuração do mongoose
 //mongoose.Promise = global.Promise;
 MONGODB_URI= "mongodb+srv://cdb:abcdeF12345@cluster0.mvho6.mongodb.net/test"
