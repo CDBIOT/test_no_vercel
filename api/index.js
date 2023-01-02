@@ -3,6 +3,8 @@ import { Router } from 'express';
 import express from 'express';
 const app = express();
 
+const Temps = require('./temps')
+
 const route = Router();
 
 
@@ -12,6 +14,17 @@ route.get('/', (req, res) =>{
             sucess: true,
             message: "Sucesso"
         })
+})
+
+
+//Read
+route.get('/temps', async (req, res) =>{
+    try{
+       const temps = await Temps.find()
+        res.status(200).json({temps})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
 })
 
 
