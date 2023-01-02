@@ -1,8 +1,6 @@
-
-
 const express = require('express');
 const app = express();
-const route = express.Router('./rotas_temps','./rotas_user');
+const route = express.Router('../rotas_temps','../rotas_user');
 const Temps = require('../temps')
 
 //Read
