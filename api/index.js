@@ -61,7 +61,7 @@ route.use('../mqtt_node2.js', express.static("/"))
 
 
 route.get("../mqtt_node2",function(req,res){
-   res.sendFile(__dirname + "/mqtt_node2.js");
+   res.sendFile(__dirname + "../mqtt_node2.js");
 });
     
 const port = process.env.PORT || 4000;
