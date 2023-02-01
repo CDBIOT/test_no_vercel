@@ -1,7 +1,6 @@
 const { response } = require('express');
 const express = require('express');
 const routers = express.Router();
-const app = express();
 
 const Temps = require('./temps')
 const Person = require('./user')
