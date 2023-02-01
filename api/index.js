@@ -41,7 +41,7 @@ route.get('/mqtt',(req, res) =>{
     })
 
  //Create temps
- routers.post('/temps', async (req, res) =>{
+ route.post('/temps', async (req, res) =>{
     const {local, temperatura, dia, mes, ano } = req.body
        // const temps = req.params
     const temps = {local,temperatura, dia, mes, ano}
