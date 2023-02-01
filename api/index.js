@@ -40,6 +40,24 @@ route.get('/mqtt',(req, res) =>{
      }  
     })
 
+route.get('/mqtt_node',(req, res) =>{
+    try{ 
+        date = new Date() 
+        var vm = {
+            temp: temp,
+            local: local,
+            dia: date.getDate(),   
+            mes: date.getMonth() + 1,
+            ano: date.getFullYear()
+        }
+        console.log(vm);
+        //res.send(vm);
+        res.status(200).json({vm})
+     }catch(error){
+         res.status(500).json(error)
+     }  
+    })
+
  //Create temps
  route.post('/temps', async (req, res) =>{
     const {local, temperatura, dia, mes, ano } = req.body
