@@ -57,10 +57,10 @@ route.get('/mqtt',(req, res) =>{
         }  
     })
     
-routers.use('/mqtt_node2.js', express.static("/"))
+route.use('../mqtt_node2.js', express.static("/"))
 
 
-routers.get("/mqtt_node2",function(req,res){
+route.get("../mqtt_node2",function(req,res){
    res.sendFile(__dirname + "/mqtt_node2.js");
 });
     
