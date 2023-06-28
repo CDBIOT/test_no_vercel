@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const route = express.Router('../rotas_temps','../rotas_user');
 const Temps = require('../temps')
-const mqtt = require('mqtt');
+const mqtt = require('../mqtt_node2');
 
 //Read
 route.get('/', (req, res) =>{
@@ -41,24 +41,6 @@ route.get('/mqtt',(req, res) =>{
      }  
     })
 
-route.get('/mqtt_node',(req, res) =>{
-    try{ 
-        date = new Date() 
-        var vm = {
-            temp: temp,
-            local: local,
-            dia: date.getDate(),   
-            mes: date.getMonth() + 1,
-            ano: date.getFullYear()
-        }
-        console.log(vm);
-        //res.send(vm);
-        res.status(200).json({vm})
-     }catch(error){
-         res.status(500).json(error)
-     }  
-    })
-
  //Create temps
  route.post('/temps', async (req, res) =>{
     const {local, temperatura, dia, mes, ano } = req.body
@@ -81,8 +63,8 @@ route.get("/mqtt",function(req,res){
     res.sendFile(__dirname + "/mqtt.html");
 });
 
-route.get("/mqtt_node",function(req,res){
-    res.sendFile(__dirname + "/mqtt_node.js");
+route.get("/mqtt",function(req,res){
+    res.sendFile(__dirname + "/mqtt_node2.js");
  });
     
 const port = process.env.PORT || 4000;
