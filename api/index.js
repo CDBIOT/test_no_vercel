@@ -5,7 +5,7 @@ const Temps = require('../temps')
 const mqtt = require('../mqtt_node2');
 const cors = require('cors')
 
-app.use(cors());
+route.use(cors());
 
 route.use((req,res,next) => {
     console.log("Cors habilitado");
