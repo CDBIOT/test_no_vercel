@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const route = express.Router('../rotas_temps','../rotas_user');
 const Temps = require('../temps')
-
 const mqtt = require('../mqtt_node2');
 const cors = require('cors')
 
@@ -16,7 +15,6 @@ route.use((req,res,next) => {
         res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
         res.status(200).send({})
     }
-    
 next()
    })
 //Read
