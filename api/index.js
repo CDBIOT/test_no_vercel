@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const route = express.Router('../rotas_temps','../rotas_user');
 const Temps = require('../temps')
+
 const mqtt = require('../mqtt_node2');
 const cors = require('cors')
 
@@ -22,7 +23,7 @@ next()
 route.get('/', (req, res) =>{
         res.json({
             sucess: true,
-            message: "Sucesso na conexão"
+            message: "Sucesso na conexão servidor de Temperaturas"
         })
 })
 
