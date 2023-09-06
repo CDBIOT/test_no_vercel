@@ -1,6 +1,6 @@
 const { response } = require('express');
 const express = require('express');
-const routers = require.express.Router();
+const routers = express.Router();
 
 const Temps = require('./temps')
 const Person = require('./user')

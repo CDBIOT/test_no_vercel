@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "CDB",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -25,5 +25,13 @@
     "nodemon": "^2.0.22",
     "vercel": "^28.10.1"
   },
-  "description": ""
+  "description": "Server API",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CDBIOT/test_no_vercel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CDBIOT/test_no_vercel/issues"
+  },
+  "homepage": "https://github.com/CDBIOT/test_no_vercel#readme"
 }

@@ -1,8 +1,10 @@
-const express = require('express');
+const express = require ('express');
 const app = express();
-const route = express.Router('../rotas_user','../rotas_temps');
+const user = require('../rotas_user');
+const temps = require('../rotas_temps');
+const mqtt = require('../mqtt')
 const Temps = require('../temps')
-const mqtt = require('../mqtt_node2');
+const mqtt2 = require('../mqtt_node2');
 const cors = require('cors')
 require('dotenv').config()
 
@@ -19,16 +21,19 @@ app.use((req,res,next) => {
 next()
    })
 //Read
-route.get('/', (req, res) =>{
+app.get('/', (req, res) =>{
         res.json({
             sucess: true,
             message: "Sucesso na conexão servidor de Temperaturas"
         })
 })
 
+app.use('/user',user)
+
+app.use('/temps',temps)
 
 
-route.get('/mqtt',(req, res) =>{
+app.get('/mqtt',(req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
@@ -46,34 +51,14 @@ route.get('/mqtt',(req, res) =>{
      }  
     })
 
- //Create temps
- route.post('/temps', async (req, res) =>{
-    const {local, temperatura, dia, mes, ano } = req.body
-       // const temps = req.params
-    const temps = {local,temperatura, dia, mes, ano}
-    const create_temp = new Temps(req.body);
-    //temps.save()
-        try{
-            await Temps.create(temps)
-            //temps.save()
-            console.log(temps)
-            res.status(201).json({message: "Temperatura inserida"})
-            }catch(error){
-            res.status(500).json({error: error})
-        }  
-    })
-route.use('/mqtt_node2.js', express.static("/"))
+app.use('/mqtt_node2.js', express.static("/"))
 
-route.get("/mqtt",function(req,res){
-    res.sendFile(__dirname + "/mqtt.html");
-});
 
-route.get("/mqtt",function(req,res){
+app.get("/mqtt",function(req,res){
     res.sendFile(__dirname + "/mqtt_node2.js");
  });
     
 const port = process.env.PORT || 4000;
-app.use (route)
 
     app.listen(port,()=>{
         console.log("Servidor Rodando" + `${port}`);
