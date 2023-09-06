@@ -32,6 +32,7 @@ app.use('/user',user)
 
 app.use('/temps',temps)
 
+app.use('/mqtt_node2.js', express.static("/"))
 
 app.get('/mqtt',(req, res) =>{
     try{ 
@@ -51,7 +52,6 @@ app.get('/mqtt',(req, res) =>{
      }  
     })
 
-app.use('/mqtt_node2.js', express.static("/"))
 
 
 app.get("/mqtt",function(req,res){
