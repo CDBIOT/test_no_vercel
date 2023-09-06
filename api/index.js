@@ -1,7 +1,7 @@
 const express = require ('express');
 const app = express();
-const user = require('../rotas_user');
-const temps = require('../rotas_temps');
+const rotas_user = require('../rotas_user');
+const rotas_temps = require('../rotas_temps');
 const mqtt = require('../mqtt')
 const Temps = require('../temps')
 const mqtt2 = require('../mqtt_node2');
@@ -28,9 +28,9 @@ app.get('/', (req, res) =>{
         })
 })
 
-app.use('/user',user)
+app.use('/user',rotas_user)
 
-app.use('/temps',temps)
+app.use('/temps',rotas_temps)
 
 app.use('/mqtt_node2.js', express.static("/"))
 
