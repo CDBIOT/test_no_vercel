@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const route = express.Router('../rotas_user');
+const route = express.Router('../rotas_user','../rotas_temps');
 const Temps = require('../temps')
 const mqtt = require('../mqtt_node2');
 const cors = require('cors')
@@ -26,15 +26,6 @@ route.get('/', (req, res) =>{
         })
 })
 
-//Read
-route.get('/temps', async (req, res) =>{
-    try{
-       const temps = await Temps.find()
-        res.status(200).json({temps})
-    }catch(error){
-        res.status(500).json({ message: "No Sucess!"})
-    }  
-})
 
 
 route.get('/mqtt',(req, res) =>{
