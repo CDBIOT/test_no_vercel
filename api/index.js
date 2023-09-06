@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
-const route = express.Router('../rotas_temps','../rotas_user');
+const route = express.Router('../rotas_user');
 const Temps = require('../temps')
 const mqtt = require('../mqtt_node2');
 const cors = require('cors')
+require('dotenv').config()
 
-route.use(cors());
+app.use(cors());
 
-route.use((req,res,next) => {
+app.use((req,res,next) => {
     console.log("Cors habilitado");
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Header",'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -15,14 +16,13 @@ route.use((req,res,next) => {
         res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
         res.status(200).send({})
     }
-    
 next()
    })
 //Read
 route.get('/', (req, res) =>{
         res.json({
             sucess: true,
-            message: "Sucesso na conexão"
+            message: "Sucesso na conexão servidor de Temperaturas"
         })
 })
 
