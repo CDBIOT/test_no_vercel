@@ -1,7 +1,7 @@
 const express = require ('express');
 const app = express();
 const rotas_user = require('../rotas_user');
-const rotas_temps = require('../rotas_temps');
+//const rotas_temps = require('../rotas_temps');
 const mqtt = require('../mqtt')
 const Temps = require('../temps')
 const mqtt2 = require('../mqtt_node2');
@@ -28,9 +28,16 @@ app.get('/', (req, res) =>{
         })
 })
 
-app.use('/user',rotas_user)
+//Read
+app.get('/temps', async (req, res) =>{
+    try{
+       const temps = await Temps.find()
+        res.status(200).json({temps})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
+})
 
-app.use('/temps',rotas_temps)
 
 app.use('/mqtt_node2.js', express.static("/"))
 
@@ -57,6 +64,11 @@ app.get('/mqtt',(req, res) =>{
 app.get("/mqtt",function(req,res){
     res.sendFile(__dirname + "/mqtt_node2.js");
  });
+ 
+
+ app.use('/user',rotas_user)
+
+ //app.use('/temps',rotas_temps)
     
 const port = process.env.PORT || 4000;
 

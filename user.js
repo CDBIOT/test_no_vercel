@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const db = require('./mongoConect')
 //Model User
 //Definindo o model
 //Tabela User

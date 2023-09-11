@@ -1,6 +1,7 @@
 
 const express = require('express');
-const routers = express.Router();
+const router = express.Router();
+
 const Person = require('./user')
 var fs = require('fs');
 const bcrypt = require('bcryptjs')
@@ -8,7 +9,7 @@ const jwt = require('jsonwebtoken')
 
 
 //Read
-routers.get('/user', async (req, res) =>{
+router.get('/user', async (req, res) =>{
     try{
        const people = await Person.find()
         res.status(200).json({people})
@@ -18,7 +19,7 @@ routers.get('/user', async (req, res) =>{
 })
 
 //Read 
-routers.get('/user',checkToken, async (req, res) =>{
+router.get('/user',checkToken, async (req, res) =>{
 
     try{
         const people = await Person.find()
@@ -30,7 +31,7 @@ routers.get('/user',checkToken, async (req, res) =>{
 
 
  //Create
- routers.post('/user', async (req, res) =>{
+ router.post('/user', async (req, res) =>{
     const {nome, email, senha } = req.body
     const person = { nome,email,senha }
     try{
@@ -41,7 +42,7 @@ routers.get('/user',checkToken, async (req, res) =>{
     }  
 })
 //Cadastrar
-routers.post('/cadastrar', async (req, res) =>{
+router.post('/cadastrar', async (req, res) =>{
 
     const senha= await bcrypt.hash("123456", 8);
     console.log(senha);
@@ -52,7 +53,7 @@ routers.post('/cadastrar', async (req, res) =>{
 })
 
 //Login
-routers.post('/login', async (req, res) =>{
+router.post('/login', async (req, res) =>{
     try{
        const people = await Person.findOne({
         attributes: ['nome', 'email', 'senha']
@@ -68,7 +69,7 @@ routers.post('/login', async (req, res) =>{
 
 
  //Delete usuario
- routers.delete('/user/:id', async (req, res) => {
+ router.delete('/user/:id', async (req, res) => {
     const id = req.params.id
     const person = await Person.findById(id)
     if(!person){
@@ -107,7 +108,7 @@ routers.post('/login', async (req, res) =>{
 // });
 
 //Update
-routers.patch('/user/:id',async (req, res) =>{
+router.patch('/user/:id',async (req, res) =>{
     const id = req.params.id
     const {nome,sobrenome,idade} = req.body
     const person = {nome,email,senha,}
@@ -122,7 +123,7 @@ routers.patch('/user/:id',async (req, res) =>{
 
 
 //Login com senha criptografada
-routers.post('/login', async (req, res) =>{
+router.post('/login', async (req, res) =>{
     const {nome, senha0} = req.body
    // $2a$08$VaEBCrDE50.Sy56I7nuUkeKr0HLt2W2.mQZbvtmMCte6Jq4Iw.6oe
    if(!nome){
@@ -208,7 +209,7 @@ if(!authHeader){
 }
 
 //Cadastrar usuario com senha criptografada 
-routers.post('/cadastrar', async (req, res) =>{
+router.post('/cadastrar', async (req, res) =>{
 
     const {nome, email, senha0} = req.body
     
@@ -238,22 +239,13 @@ routers.post('/cadastrar', async (req, res) =>{
     console.log(senha);
 })
 
+router.use('/', express.static(__dirname + '/'))
+router.use('/css', express.static("/css"))
+router.use('/imagens', express.static("/imagens"))
 
-
-
-routers.use('/', express.static(__dirname + '/'))
-routers.use('/css', express.static("/css"))
-routers.use('/imagens', express.static("/imagens"))
-routers.use('/user.js', express.static("/"))
-routers.use('/rotas_user.js', express.static("/"))
-
- 
- routers.get("/cad_user",function(req,res){
+router.get("/cad_user",function(req,res){
     res.sendFile(__dirname + "/cad_user.html");
 });
 
- routers.get("/user.js",function(req,res){
-     res.sendFile(__dirname + "/user.js");
- });
 
-module.exports = routers
+module.exports = router

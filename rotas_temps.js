@@ -3,7 +3,6 @@ const express = require('express');
 const routers = express.Router();
 
 const Temps = require('./temps')
-
 var fs = require('fs');
 //app.use(mqtt);
 
