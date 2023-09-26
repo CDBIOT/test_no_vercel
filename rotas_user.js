@@ -1,15 +1,11 @@
-
 const express = require('express');
-const router = express.Router();
-
-const Person = require('./user')
+const Person = require('./db_user')
 var fs = require('fs');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-
 //Read
-router.get('/user', async (req, res) =>{
+const getUser = (async (req, res) =>{
     try{
        const people = await Person.find()
         res.status(200).json({people})
@@ -18,20 +14,9 @@ router.get('/user', async (req, res) =>{
     }  
 })
 
-//Read 
-router.get('/user',checkToken, async (req, res) =>{
-
-    try{
-        const people = await Person.find()
-        return res.status(422).json({people})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
-
 
  //Create
- router.post('/user', async (req, res) =>{
+const postUser = (async (req, res) =>{
     const {nome, email, senha } = req.body
     const person = { nome,email,senha }
     try{
@@ -41,8 +26,9 @@ router.get('/user',checkToken, async (req, res) =>{
         res.status(500).json({error: error})
     }  
 })
+
 //Cadastrar
-router.post('/cadastrar', async (req, res) =>{
+const CadUser = (async (req, res) =>{
 
     const senha= await bcrypt.hash("123456", 8);
     console.log(senha);
@@ -53,7 +39,7 @@ router.post('/cadastrar', async (req, res) =>{
 })
 
 //Login
-router.post('/login', async (req, res) =>{
+const login = (async (req, res) =>{
     try{
        const people = await Person.findOne({
         attributes: ['nome', 'email', 'senha']
@@ -67,50 +53,10 @@ router.post('/login', async (req, res) =>{
     }  
 })
 
-
- //Delete usuario
- router.delete('/user/:id', async (req, res) => {
-    const id = req.params.id
-    const person = await Person.findById(id)
-    if(!person){
-    res.status(422).json({message:  'Usuário não encontrado'});
-
-    return
-    }
-    try{
-        await Person.deleteOne(person);
-        res.status(200).json({message: 'Usuário removido com sucesso'});
-    
-    }catch(error){
-    res.status(500).json({error: error})
-    console.log(id);
-}  
-
-});
-
-//  //Delete
-//  routers.delete('/user/:id', async (req, res) => {
-//     const id= req.params.id
-//     const person = await Person.findOne({_id: id})
-//     if(!person){
-//     res.status(422).json({message:  'Usuário não encontrado'});
-//     console.log('usuario não encontrado')
-//     return
-//     }
-//     try{
-//         await Person.deleteOne({_id: id});
-//         res.status(200).json({message: 'Usuário removido com sucesso'});
-//         console.log('usuario removido')
-//     }catch(error){
-//     res.status(500).json({error: error})
-//     console.log('usuario não removido')
-// }  
-// });
-
 //Update
-router.patch('/user/:id',async (req, res) =>{
+const putUser = (async (req, res) =>{
     const id = req.params.id
-    const {nome,sobrenome,idade} = req.body
+    const {nome,email,senha} = req.body
     const person = {nome,email,senha,}
     try{
      const updatePerson = await Person.updateOne({_id: id},person);
@@ -120,10 +66,42 @@ router.patch('/user/:id',async (req, res) =>{
 }  
 })
 
+ //Delete
+const deleteUser = ('/user/:id', async (req, res) => {
+    const id= req.params.id
+    const person = await Person.findOne({_id: id})
+    //const person = await Person.findById(id)
+    if(!person){
+    res.status(422).json({message:  'Usuário não encontrado'});
+    console.log('usuario não encontrado')
+    return
+    }
+    try{
+        await Person.deleteOne({_id: id});
+        res.status(200).json({message: 'Usuário removido com sucesso'});
+        console.log('usuario removido')
+    }catch(error){
+    res.status(500).json({error: error})
+    console.log('usuario não removido')
+}  
+});
+
+
+//Read user private page
+// routers.get('/user', async (req, res) =>{
+//     const id= req.params.id
+//     try{
+//        const people = await Person.findById(id, '-senha')
+//         res.status(200).json({people})
+//         console.log(req.user._id + 'fez esta chamada')
+//     }catch(error){
+//         res.status(500).json({error: error})
+//     }  
+// })
 
 
 //Login com senha criptografada
-router.post('/login', async (req, res) =>{
+const loginCrip = (async (req, res) =>{
     const {nome, senha0} = req.body
    // $2a$08$VaEBCrDE50.Sy56I7nuUkeKr0HLt2W2.mQZbvtmMCte6Jq4Iw.6oe
    if(!nome){
@@ -209,7 +187,7 @@ if(!authHeader){
 }
 
 //Cadastrar usuario com senha criptografada 
-router.post('/cadastrar', async (req, res) =>{
+const postCrip = (async (req, res) =>{
 
     const {nome, email, senha0} = req.body
     
@@ -239,13 +217,26 @@ router.post('/cadastrar', async (req, res) =>{
     console.log(senha);
 })
 
-router.use('/', express.static(__dirname + '/'))
-router.use('/css', express.static("/css"))
-router.use('/imagens', express.static("/imagens"))
 
-router.get("/cad_user",function(req,res){
-    res.sendFile(__dirname + "/cad_user.html");
-});
+// //Read users with autentication
+// routers.get('/user',checkToken, async (req, res) =>{
+
+//     try{
+//         const people = await Person.find()
+//         return res.status(422).json({people})
+//     }catch(error){
+//         res.status(500).json({error: error})
+//     }  
+// })
 
 
-module.exports = router
+module.exports = 
+{   getUser,
+    postCrip,
+    CadUser,
+    postUser,
+    putUser,
+    deleteUser,
+    login,
+    loginCrip
+}

@@ -33,7 +33,13 @@ app.get('/temps', rotas_temps.getTemps)
 app.get('/mqtt',rotas_temps.getMqtt)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
-   
+
+
+app.get ('/user',rotas_user.getUser)
+app.post('/user',rotas_user.postUser)
+app.put('/user/:id',rotas_user.CadUser)
+app.delete('/user/:id',rotas_user.deleteUser)
+
 
 
 app.use('/mqtt_node2.js', express.static("/"))
