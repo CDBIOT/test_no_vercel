@@ -41,19 +41,18 @@ app.put('/user/:id',rotas_user.CadUser)
 app.delete('/user/:id',rotas_user.deleteUser)
 
 
-
 app.use('/mqtt_node2.js', express.static("/"))
 
-
-
-app.get("/mqtt",function(req,res){
-    res.sendFile(__dirname + "/mqtt_node2.js");
- });
+// app.get("/mqtt",function(req,res){
+//     res.sendFile(__dirname + "/mqtt_node2.js");
+//  });
  
 
- app.use('/user',rotas_user)
-
- //app.use('/temps',rotas_temps)
+app.use('/', express.static(__dirname + '/'))
+    
+app.get("/index.html",function(req,res){
+    res.sendFile(__dirname + "/index.html");
+});
     
 const port = process.env.PORT || 4000;
 

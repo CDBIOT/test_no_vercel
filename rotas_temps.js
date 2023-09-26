@@ -130,33 +130,6 @@ const deleteTemp = (async (req, res) => {
 //     }  
 // })
 
-routers.use('/', express.static(__dirname + '/'))
-routers.use('/css', express.static("/css"))
-routers.use('/imagens', express.static("/imagens"))
-routers.use('/grafico.js', express.static("/"))
-routers.use('/mqtt_node2.js', express.static("/"))
-
-
- routers.get("/mqtt_node2",function(req,res){
-    res.sendFile(__dirname + "/mqtt_node2.js");
-});
-
-routers.get("/mqtt.html",function(req,res){
-    res.sendFile(__dirname + "/mqtt.html");
-});
- 
- routers.get("/Grafico",function(req,res){
-     res.sendFile(__dirname + "/Grafico.html");
- });
- 
- routers.get("/grafico",function(req,res){
-     res.sendFile(__dirname + "/grafico.js");
- });
- 
- routers.get("/admin",function(req,res){
-    res.sendFile(__dirname + "/admin.html");
-});
-
 
 module.exports = {
         getTemps,
