@@ -1,7 +1,7 @@
 const express = require ('express');
 const app = express();
 const rotas_user = require('../rotas_user');
-//const rotas_temps = require('../rotas_temps');
+const rotas_temps = require('../rotas_temps');
 const mqtt = require('../mqtt')
 const Temps = require('../temps')
 const mqtt2 = require('../mqtt_node2');
@@ -28,36 +28,15 @@ app.get('/', (req, res) =>{
         })
 })
 
-//Read
-app.get('/temps', async (req, res) =>{
-    try{
-       const temps = await Temps.find()
-        res.status(200).json({temps})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
+
+app.get('/temps', rotas_temps.getTemps)
+app.get('/mqtt',rotas_temps.getMqtt)
+app.post('/temps', rotas_temps.postTemps)
+app.delete('/temps',rotas_temps.deleteTemp)
+   
 
 
 app.use('/mqtt_node2.js', express.static("/"))
-
-app.get('/mqtt',(req, res) =>{
-    try{ 
-        date = new Date() 
-        var vm = {
-            temp: mqtt.temp,
-            local: local,
-            dia: date.getDate(),   
-            mes: date.getMonth() + 1,
-            ano: date.getFullYear()
-        }
-        console.log(vm);
-        //res.send(vm);
-        res.status(200).json({vm})
-     }catch(error){
-         res.status(500).json(error)
-     }  
-    })
 
 
 

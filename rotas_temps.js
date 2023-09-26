@@ -1,13 +1,11 @@
 const { response } = require('express');
 const express = require('express');
 const routers = express.Router();
-
 const Temps = require('./temps')
 var fs = require('fs');
 //app.use(mqtt);
 
-
- routers.get('/mqtt',(req, res) =>{
+ const getMqtt=((req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
@@ -26,7 +24,7 @@ var fs = require('fs');
     })
     
  //Create temps
-routers.post('/temps', async (req, res) =>{
+const postTemps=( async (req, res) =>{
 const {local, temperatura, dia, mes, ano } = req.body
    // const temps = req.params
 const temps = {local,temperatura, dia, mes, ano}
@@ -44,7 +42,7 @@ const create_temp = new Temps(req.body);
 
 
 //Read
-routers.get('/temps', async (req, res) =>{
+const getTemps=( async (req, res) =>{
     try{
        const temps = await Temps.find()
         res.status(200).json({temps})
@@ -53,41 +51,41 @@ routers.get('/temps', async (req, res) =>{
     }  
 })
 
-//Read
-routers.get('/temps/:dia', async (req, res) =>{
-    const dia = req.params.dia
-    try{
-       const dias = await Temps.findAll({dia})
-        res.status(200).json({dias})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
+// //Read
+// routers.get('/temps/:dia', async (req, res) =>{
+//     const dia = req.params.dia
+//     try{
+//        const dias = await Temps.findAll({dia})
+//         res.status(200).json({dias})
+//     }catch(error){
+//         res.status(500).json({error: error})
+//     }  
+// })
 
-//Update
-routers.patch('/temps/:id',async (req, res) =>{
-    const id = req.params.id
-    const {local, temperatura, dia, mes, ano } = req.body
-    const temps = {local, temperatura, dia, mes, ano}
-    try{
-     const updateTemp = await Temps.updateOne({id: id},temps);
-     res.status(200).json(temps);
-    }catch(error){
-    res.status(500).json({error: error})
-    }  
-})
+// //Update
+// routers.patch('/temps/:id',async (req, res) =>{
+//     const id = req.params.id
+//     const {local, temperatura, dia, mes, ano } = req.body
+//     const temps = {local, temperatura, dia, mes, ano}
+//     try{
+//      const updateTemp = await Temps.updateOne({id: id},temps);
+//      res.status(200).json(temps);
+//     }catch(error){
+//     res.status(500).json({error: error})
+//     }  
+// })
 
-routers.post('/temps/:id',async(req, res) =>{
-    const  id = req.params.id
+// routers.post('/temps/:id',async(req, res) =>{
+//     const  id = req.params.id
     
-    res.status(201).send({
-    mensagem: 'inserido',
-    produtoCriado: produto
-    })
-  });
+//     res.status(201).send({
+//     mensagem: 'inserido',
+//     produtoCriado: produto
+//     })
+//   });
 
  //Delete
-routers.delete('/temps/:id', async (req, res) => {
+const deleteTemp = (async (req, res) => {
     const id= req.params.id
     //temps.remove({id: req.body.id})
     const temps = await Temps.deleteOne({ _id: id}, (err) => {
@@ -160,4 +158,10 @@ routers.get("/mqtt.html",function(req,res){
 });
 
 
-module.exports = routers
+module.exports = {
+        getTemps,
+        getMqtt,
+        postTemps,
+        deleteTemp
+    
+    }
