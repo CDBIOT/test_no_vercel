@@ -13,10 +13,10 @@ const options = {
 }
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 client.on('connect', function () {
-  console.log('Connected on mqtt broker topic Temp_sala')
+  console.log('Connected on mqtt broker topic Teste1')
 
-  
-  client.subscribe('Temp_sala', function (err) {
+
+  client.subscribe('Teste1', function (err) {
 
     console.log('Subscribe to topic Temp_sala')
     if (!err) {

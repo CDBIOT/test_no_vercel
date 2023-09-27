@@ -45,7 +45,7 @@ client.on('connect', () => {
   client.subscribe([topic3], () => {
     console.log(`Subscribe to topic '${topic3}'`)
 
-client.on('message', (topic2, payload) => {
+client.on('message', (topic3, payload) => {
       temp3 = payload
       local3= topic3
      console.log('Received Message:', local3, payload.toString())
