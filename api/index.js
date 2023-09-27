@@ -31,6 +31,7 @@ app.get('/', (req, res) =>{
 
 app.get('/temps', rotas_temps.getTemps)
 app.get('/mqtt',rotas_temps.getMqtt)
+app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
@@ -41,29 +42,28 @@ app.put('/user/:id',rotas_user.CadUser)
 app.delete('/user/:id',rotas_user.deleteUser)
 
 
-app.use('/mqtt_node2.js', express.static("/"))
+// app.use('/mqtt_node2.js', express.static("/"))
 
-// app.get("/mqtt",function(req,res){
-//     res.sendFile(__dirname + "/mqtt_node2.js");
-//  });
- 
 app.use('/', express.static(__dirname + '/'))
 app.use('/css', express.static("/css"))
 app.use('/imagens', express.static("/imagens"))
-app.use('/grafico.js', express.static("/"))
+// app.use('/grafico.js', express.static("/"))
 
 app.get("/index.html",function(req,res){
     res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/Grafico",function(req,res){
-    res.sendFile(__dirname + "/Grafico.html");
-});
+// app.get("/Grafico",function(req,res){
+//     res.sendFile(__dirname + "/Grafico.html");
+// });
 
-app.get("/grafico",function(req,res){
-    res.sendFile(__dirname + "/grafico.js");
-});
+// app.get("/grafico",function(req,res){
+//     res.sendFile(__dirname + "/grafico.js");
+// });
 
+// app.get("/mqtt",function(req,res){
+//     res.sendFile(__dirname + "/mqtt_node2.js");
+//  });
     
     
 const port = process.env.PORT || 4000;

@@ -13,12 +13,18 @@ const options = {
 }
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 client.on('connect', function () {
-  console.log('Connected')
+  console.log('Connected on mqtt broker topic Temp_sala')
+
+  
   client.subscribe('Temp_sala', function (err) {
+
+    console.log('Subscribe to topic Temp_sala')
     if (!err) {
       client.publish('bh/inTopic', '1')
     }
   })
+
+
 })
 
 client.on('message', function (topic, message) {
