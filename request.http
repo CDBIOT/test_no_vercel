@@ -10,6 +10,10 @@ content-type: application/json
 GET https://test-no-vercel.vercel.app/mqtt
 
 ###
+GET https://test-no-vercel.vercel.app/temps
+
+
+###
 DELETE https://super-server-nu.vercel.app/products/65085cd1976d83e3f5f49136
 
 ###
