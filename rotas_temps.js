@@ -16,7 +16,6 @@ var fs = require('fs');
             ano: date.getFullYear()
         }
         console.log(vm);
-        //res.send(vm);
         res.status(200).json({vm})
      }catch(error){
          res.status(500).json(error)
