@@ -35,6 +35,7 @@ app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
+app.get('/mqtt_pub', mqtt2.onLight)
 
 app.get ('/user',rotas_user.getUser)
 app.post('/user',rotas_user.postUser)

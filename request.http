@@ -17,11 +17,11 @@ GET https://test-no-vercel.vercel.app/temps
 DELETE https://super-server-nu.vercel.app/products/65085cd1976d83e3f5f49136
 
 ###
-POST https://super-server-nu.vercel.app/postgre/6509e24fffadefd30f5d7b7f"
+POST https://super-server-nu.vercel.app/products
 content-type: application/json
 
 {
-"id":"08",
+//"id":"08",
 "product": "UVA VERMELHA",
 "marca": "SEM SEMENTE",
 "price": 9,
