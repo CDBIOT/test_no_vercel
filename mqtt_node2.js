@@ -85,7 +85,7 @@ client.on('message', (topic, payload) => {
  const onLight=(async (req,res)=>{
 
 try{
-  await client.publish(topic, 2, { qos: 0, retain: true }, (error) => {
+  await client.publish(topic, 0, { qos: 0, retain: true }, (error) => {
     if (error) {
           console.error(error)
         }
