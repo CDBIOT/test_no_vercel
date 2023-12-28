@@ -76,7 +76,7 @@ client.on('message', (topic, payload) => {
 // })
 
 
-const offLight=( (req,res)=>{
+offLight=( (req,res)=>{
 
  client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
       if (error) {
@@ -86,7 +86,7 @@ const offLight=( (req,res)=>{
    })
   
 
-const onLight=( (req,res)=>{
+onLight=( (req,res)=>{
 client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
     if (error) {
           console.error(error)
