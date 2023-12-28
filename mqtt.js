@@ -44,21 +44,24 @@ router.get('/', function (req, res) {
     res.render('mqtt/index', vm);
 });
 
-router.get('/on'), function(req, res){
+router.get('/on', function(req, res){
   client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
     if (error) {
           console.error(error)
         }
       })
-}
+})
+
    
  
-router.get('/off'), function(req, res){
+router.get('/off', function(req, res){
+
   client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
     if (error) {
           console.error(error)
         }
       })
-}
+})
+
  
 module.exports = mqtt;
