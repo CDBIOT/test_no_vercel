@@ -44,11 +44,22 @@ router.get('/', function (req, res) {
     res.render('mqtt/index', vm);
 });
 
-router.get('/getsensordata', function (req, res) {
-    var vm = {
-    data:m
-    };
-    res.send(vm);
-});
+const offLight=( (req,res)=>{
 
+  client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
+       if (error) {
+             console.error(error)
+           }
+         })
+    })
+   
+ 
+ const onLight=( (req,res)=>{
+ client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
+     if (error) {
+           console.error(error)
+         }
+       })
+  })
+ 
 module.exports = mqtt;

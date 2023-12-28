@@ -76,39 +76,27 @@ client.on('message', (topic, payload) => {
 // })
 
 
-const offLight=(async (req,res)=>{
+const offLight=( (req,res)=>{
 
-  try{
-    await client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
+ client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
       if (error) {
             console.error(error)
           }
         })
-  
-      }catch(error){
-        res.status(500).json({error: error})
-      }
    })
   
 
- const onLight=(async (req,res)=>{
-
-try{
-  await client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
+const onLight=( (req,res)=>{
+client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
     if (error) {
           console.error(error)
         }
       })
-
-    }catch(error){
-      res.status(500).json({error: error})
-    }
  })
 
 
 
 module.exports = {
-
   onLight,
   offLight,
   mqtt2
