@@ -38,6 +38,24 @@ app.delete('/temps',rotas_temps.deleteTemp)
 app.get('/mqtt_on', mqtt2.onLight)
 app.get('/mqtt_off', mqtt2.offLight)
 
+app.get('/on', function(req, res){
+    client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
+      if (error) {
+            console.error(error)
+          }
+        })
+  })
+  
+app.get('/off', function(req, res){
+  
+    client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
+      if (error) {
+            console.error(error)
+          }
+        })
+  })
+  
+
 app.get ('/user',rotas_user.getUser)
 app.post('/user',rotas_user.postUser)
 app.put('/user/:id',rotas_user.CadUser)
