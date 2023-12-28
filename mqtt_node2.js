@@ -24,7 +24,7 @@ client.on('connect', () => {
 client.on('message', (topic, payload) => {
       temp = payload
       local= topic
-      console.log('Received Message:', topic, payload.toString())
+      console.log('Received Message test_no_vercel:', topic, payload.toString())
     //  res.status(200).json({m})
     })
   })

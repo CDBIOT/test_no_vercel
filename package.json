@@ -4,6 +4,7 @@
   "main": "api/index.js",
   "scripts": {
     "start": "node .",
+    "build": "webpack",
     "dev": "nodemon api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,7 +25,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
-    "vercel": "^28.10.1"
+    "vercel": "^28.10.1",
+    "webpack-cli": "^5.1.4"
   },
   "description": "Server API",
   "repository": {
@@ -34,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/CDBIOT/test_no_vercel/issues"
   },
-  "homepage": "https://github.com/CDBIOT/test_no_vercel#readme"
+  "homepage": "https://github.com/CDBIOT/test_no_vercel#readme",
+  "browser": {
+    "[module-name]": false   
+  }
 }
