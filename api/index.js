@@ -38,9 +38,6 @@ app.delete('/temps',rotas_temps.deleteTemp)
 app.get('/mqtt_on', mqtt2.onLight)
 app.get('/mqtt_off', mqtt2.offLight)
 
-app.get('/mqtt_o', mqtt.onLight)
-app.get('/mqtt_of', mqtt.offLight)
-
 app.get ('/user',rotas_user.getUser)
 app.post('/user',rotas_user.postUser)
 app.put('/user/:id',rotas_user.CadUser)
