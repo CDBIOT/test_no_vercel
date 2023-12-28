@@ -2,11 +2,11 @@
     "name": "teste-no-vercel",
     "version": 2,
     "public": true,
-    "builds":
+    "builds":[
       {
         "src": "api/index.js",
         "use": "@vercel/node"
-         },
+         }],
     "routes":[
         {
         "src": "/(.*)",
