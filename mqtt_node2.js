@@ -26,7 +26,7 @@ client.on('message', (topic, payload) => {
       local= topic
       console.log('Received Message test_no_vercel:', topic, payload.toString())
       client.publish('bh/inTopic', '0')
-    //  res.status(200).json({m})
+     res.status(200).json({m})
     client.end()
     })
   })
