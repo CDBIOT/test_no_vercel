@@ -82,6 +82,7 @@ offLight=( (req,res)=>{
       if (error) {
             console.error(error)
           }
+    client.end()
         })
    })
   
@@ -91,6 +92,7 @@ client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
     if (error) {
           console.error(error)
         }
+        client.end()
       })
  })
 
