@@ -1,6 +1,6 @@
 const mqtt2 = require('mqtt');
-const routers = require('./rotas_temps');
-
+const express = require('express');
+const router = express.Router();
 const host = 'broker.mqtt-dashboard.com'
 const port = '1883'
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
@@ -25,19 +25,21 @@ client.on('message', (topic, payload) => {
       temp = payload
       local= topic
       console.log('Received Message test_no_vercel:', topic, payload.toString())
+      client.publish('bh/inTopic', '0')
     //  res.status(200).json({m})
+    client.end()
     })
   })
-})
-setInterval(() => {
-client.on('message', (topic, payload) => {
-  temp = payload.toString()
-  console.log('Received Message:', topic, temp)
-  client.end()
+ })
+// setInterval(() => {
+// client.on('message', (topic, payload) => {
+//   temp = payload.toString()
+//   console.log('Received Message:', topic, temp)
+//   client.end()
   //res.status(200).json({m})
-})
+///})
   
-}, 1000);
+//}, 1000);
 
 // const topic3 = 'Quarto'
 // client.on('connect', () => {
@@ -75,7 +77,17 @@ client.on('message', (topic, payload) => {
 //   })
 // })
 
+router.get('/on',function(req,res){
 
+  client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
+    if (error) {
+          console.error(error)
+        }
+  client.end()
+      })
+
+  
+})
 offLight=( (req,res)=>{
 
  client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
