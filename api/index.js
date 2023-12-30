@@ -38,15 +38,7 @@ app.delete('/temps',rotas_temps.deleteTemp)
 app.get('/publisher', mqtt.publishMessage)
 app.get('/subscriber', mqtt.subscribeToTopic)
 
-app.get('/on', function(req, res){
-    client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
-      if (error) {
-            console.error(error)
-          }
-        })
-  })
   
-
 app.get ('/user',rotas_user.getUser)
 app.post('/user',rotas_user.postUser)
 app.put('/user/:id',rotas_user.CadUser)
