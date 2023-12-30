@@ -59,9 +59,9 @@ client.on('message', (topic,message, payload) => {
   
 //}, 1000);
 
-function subscribeToTopic(topic1,message){
-    console.log(`Subscribing to Topic: ${topic1}`);
-    client.subscribe(topic1,message,{qos: 0});
+function subscribeToTopic(topic,message){
+    console.log(`Subscribing to Topic: ${topic}`);
+    client.subscribe(topic,message,{qos: 0});
 }
 
 connectToBroker();
