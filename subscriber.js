@@ -65,7 +65,7 @@ function subscribeToTopic(topic,message){
 }
 
 connectToBroker();
-subscribeToTopic();
+subscribeToTopic("topic1");
 
 module.exports = {
     connectToBroker,
