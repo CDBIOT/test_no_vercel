@@ -35,20 +35,11 @@ app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
-app.get('/mqtt_on', mqtt2.onLight)
-app.get('/mqtt_off', mqtt2.offLight)
+app.get('/publisher', mqtt.publishMessage)
+app.get('/subscriber', mqtt.subscribeToTopic)
 
 app.get('/on', function(req, res){
     client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
-      if (error) {
-            console.error(error)
-          }
-        })
-  })
-  
-app.get('/off', function(req, res){
-  
-    client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
       if (error) {
             console.error(error)
           }

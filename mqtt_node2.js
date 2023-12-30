@@ -7,11 +7,11 @@ const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
 
 const connectUrl = `mqtt://${host}:${port}`
 const client = mqtt2.connect(connectUrl, {
-  clientId,
+  clientId: "cdbiot123",
   clean: true,
   connectTimeout: 4000,
-  username: 'emqx',
-  password: 'public',
+  username: 'test',
+  password: 'test',
   reconnectPeriod: 1000,
 })
 
@@ -26,7 +26,7 @@ client.on('message', (topic, payload) => {
       local= topic
       console.log('Received Message test_no_vercel:', topic, payload.toString())
       client.publish('bh/inTopic', '0')
-     res.status(200).json({m})
+     //res.status(200).json({m})
     client.end()
     })
   })
@@ -77,7 +77,7 @@ client.on('message', (topic, payload) => {
 //   })
 // })
 
-router.get('/on',function(req,res){
+router.post('/on',function(req,res){
 
   client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
     if (error) {
