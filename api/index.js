@@ -5,8 +5,9 @@ const rotas_temps = require('../rotas_temps');
 const mqtt = require('../mqtt')
 const Temps = require('../temps')
 const mqtt2 = require('../mqtt_node2');
-//const subscriber = require('../subscriber')
-//const publisher = require('../publisher')
+
+const subscriber = require('../subscriber')
+const publisher = require('../publisher')
 const cors = require('cors')
 require('dotenv').config()
 
@@ -37,8 +38,8 @@ app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
-app.get('/publisher', mqtt.publishMessage)
-app.get('/subscriber', mqtt.subscribeToTopic)
+app.get('/publisher', publisher.publishMessage)
+app.get('/subscriber', subscriber.subscribeToTopic)
 
   
 app.get ('/user',rotas_user.getUser)
