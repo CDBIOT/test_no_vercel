@@ -88,30 +88,9 @@ router.post('/on',function(req,res){
 
   
 })
-offLight=( (req,res)=>{
-
- client.publish(topic,'1', { qos: 0, retain: true }, (error) => {
-      if (error) {
-            console.error(error)
-          }
-    client.end()
-        })
-   })
-  
-
-onLight=( (req,res)=>{
-client.publish(topic,'0', { qos: 0, retain: true }, (error) => {
-    if (error) {
-          console.error(error)
-        }
-        client.end()
-      })
- })
 
 
 
 module.exports = {
-  onLight,
-  offLight,
   mqtt2
 }

@@ -37,8 +37,8 @@ app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
- app.get('/publisher', mqtt.publishMessage)
- app.get('/subscriber', mqtt.subscribeToTopic)
+//  app.get('/publisher', mqtt.publishMessage)
+//  app.get('/subscriber', mqtt.subscribeToTopic)
 
   
 app.get ('/user',rotas_user.getUser)
