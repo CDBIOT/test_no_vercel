@@ -5,8 +5,8 @@ const rotas_temps = require('../rotas_temps');
 const mqtt = require('../mqtt')
 const Temps = require('../temps')
 const mqtt2 = require('../mqtt_node2');
-const subscriber = require('../src/subscriber')
-const publisher = require('../src/publisher')
+const subscriber = require('../subscriber')
+const publisher = require('../publisher')
 const cors = require('cors')
 require('dotenv').config()
 
