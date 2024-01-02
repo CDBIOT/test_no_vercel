@@ -24,7 +24,7 @@ client.on('connect', function () {
       client.publish('bh/inTopic', '1')
     }
   })
-
+  client.end()
 
 })
 
