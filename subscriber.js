@@ -48,13 +48,6 @@ client.on('message', (topic,message, payload) => {
       console.log('Received Message:'+message.toString(), topic, payload.toString())
     })
 }
-// setInterval(() => {
-// client.on('message', (topic, payload) => {
-//   temp = payload.toString()
-//   console.log('Received Message:', topic, temp)
-///})
-  
-//}, 1000);
 
 function subscribeToTopic(topic,message){
     console.log(`Subscribing to Topic: ${topic}`);
@@ -63,7 +56,7 @@ function subscribeToTopic(topic,message){
 }
 
 connectToBroker();
-//subscribeToTopic("topic1","Olá");
+subscribeToTopic("topic1","Olá");
 
 module.exports = {
     connectToBroker,
