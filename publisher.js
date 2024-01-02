@@ -49,13 +49,6 @@ client.on('message', (topic,message, payload) => {
       console.log('Received Message:'+message.toString(), topic, payload.toString())
     })
 }
-// setInterval(() => {
-// client.on('message', (topic, payload) => {
-//   temp = payload.toString()
-//   console.log('Received Message:', topic, temp)
-///})
-  
-//}, 1000);
 
 function publishMessage(topic,message){
     console.log(`Sending Topic: ${topic}, Message: ${message}`);
@@ -63,7 +56,7 @@ function publishMessage(topic,message){
 }
 
 connectToBroker();
-//publishMessage("topic1","1");
+publishMessage("topic1","1");
 
 module.exports = {
     connectToBroker,
