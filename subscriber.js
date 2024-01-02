@@ -2,16 +2,16 @@ const mqtt = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
-var client 
 
+const topic1 = 'Sala'
+const topic2 = 'Lamp'
+const topic3 = 'Aqua'
 
 const host = 'broker.mqtt-dashboard.com'
 const port = '1883'
 
-
-function connectToBroker(){
-
 const connectUrl = `mqtt://${host}:${port}`
+
 
 const options = {
     // Clean session
@@ -24,12 +24,9 @@ const options = {
    reconnectPeriod: 1000,
   }
 
-
-const topic1 = 'Sala'
-const topic2 = 'Lamp'
-const topic3 = 'Aqua'
-
 const client = mqtt.connect(connectUrl,options)
+
+function connectToBroker(){
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
