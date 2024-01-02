@@ -1,4 +1,4 @@
-const mqtt = require('mqtt');
+const subscriber = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
@@ -61,5 +61,5 @@ subscribeToTopic("topic1","Olá");
 module.exports = {
     connectToBroker,
     subscribeToTopic,
-  mqtt
+  subscriber
 }

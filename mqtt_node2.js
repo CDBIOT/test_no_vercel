@@ -31,15 +31,6 @@ client.on('message', (topic, payload) => {
     })
   })
  })
-// setInterval(() => {
-// client.on('message', (topic, payload) => {
-//   temp = payload.toString()
-//   console.log('Received Message:', topic, temp)
-//   client.end()
-  //res.status(200).json({m})
-///})
-  
-//}, 1000);
 
 
 module.exports = {

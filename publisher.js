@@ -1,4 +1,4 @@
-const mqtt = require('mqtt');
+const publisher = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
@@ -62,5 +62,5 @@ publishMessage("topic1","1");
 module.exports = {
     connectToBroker,
     publishMessage,
-    mqtt
+    publisher
 }
