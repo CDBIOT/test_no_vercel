@@ -62,7 +62,7 @@ function subscribeToTopic(topic,message){
 }
 
 connectToBroker();
-subscribeToTopic("topic1","Olá");
+//subscribeToTopic("topic1","Olá");
 
 module.exports = {
     connectToBroker,

@@ -63,7 +63,7 @@ function publishMessage(topic,message){
 }
 
 connectToBroker();
-publishMessage("topic1","1");
+//publishMessage("topic1","1");
 
 module.exports = {
     connectToBroker,
