@@ -62,5 +62,5 @@ publishMessage("topic1","1");
 module.exports = {
     connectToBroker,
     publishMessage,
-    publisher
+    mqtt
 }
