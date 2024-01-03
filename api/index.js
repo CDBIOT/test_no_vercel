@@ -38,8 +38,8 @@ app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
-app.get('/publisher', publisher)
-app.get('/subscriber', subscriber)
+app.get('/publisher', publisher.publishMessage)
+app.get('/subscriber', subscriber.subscribeToTopic)
 
   
 app.get ('/user',rotas_user.getUser)
