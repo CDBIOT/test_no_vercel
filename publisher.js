@@ -1,4 +1,4 @@
-const publisher = require('mqtt');
+const mqtt = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
