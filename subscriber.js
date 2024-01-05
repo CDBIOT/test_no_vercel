@@ -2,7 +2,7 @@ const mqtt = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
-
+var client
 const topic1 = 'Sala'
 const topic2 = 'Lamp'
 const topic3 = 'Aqua'
@@ -10,13 +10,16 @@ const topic3 = 'Aqua'
 const host = 'broker.mqtt-dashboard.com'
 const port = '1883'
 
+
+
+function connectToBroker(){
+
 const connectUrl = `mqtt://${host}:${port}`
-
-
 const options = {
     // Clean session
+    keepalive: 60,
     clean: true,
-    connectTimeout: 4000,
+    connectTimeout: 30 * 1000,
     // Auth
     clientId: 'cdbiot123',
     username: 'test',
@@ -25,8 +28,6 @@ const options = {
   }
 
 const client = mqtt.connect(connectUrl,options)
-
-function connectToBroker(){
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
@@ -51,12 +52,12 @@ client.on('message', (topic,message, payload) => {
 
 function subscribeToTopic(topic,message){
     console.log(`Subscribing to Topic: ${topic}`);
-    client.subscribe(topic,message,{qos: 0});
-    client.end()
+    //client.subscribe(topic,message,{qos: 0});
+    //client.end()
 }
 
 connectToBroker();
-//subscribeToTopic("topic1","Olá");
+subscribeToTopic("topic1","Olá");
 
 module.exports = {
     connectToBroker,
