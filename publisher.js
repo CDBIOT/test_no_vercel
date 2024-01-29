@@ -5,6 +5,7 @@ const router = express.Router();
 var client
 
 const topic1 = 'bh/inTopic'
+
 const topic2 = 'Lamp'
 const topic3 = 'Aqua'
 
