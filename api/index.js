@@ -1,3 +1,5 @@
+//API test_no_vercel BACKEND PARA IOT_VERCEL_REACT 
+
 const express = require ('express');
 const app = express();
 const rotas_user = require('../rotas_user');
