@@ -33,7 +33,7 @@ app.get('/', (req, res) =>{
 
 
 app.get('/temps', rotas_temps.getTemps)
-app.get('/mqtt',rotas_temps.getMqtt)
+app.get('/mqtt',mqtt)
 app.get('/mqtt2', rotas_temps.getMqtt2)
 app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)

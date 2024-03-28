@@ -13,10 +13,10 @@ const options = {
  reconnectPeriod: 1000,
 }
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
+
 client.on('connect', function () {
   console.log('Connected on mqtt broker topic Teste1')
-
-
+  
   client.subscribe('Teste1', function (err) {
 
     console.log('Subscribe to topic Temp_sala')
