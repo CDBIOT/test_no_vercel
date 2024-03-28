@@ -1,3 +1,5 @@
+//API test_no_vercel BACKEND PARA IOT_VERCEL_REACT 
+
 const express = require ('express');
 const app = express();
 const rotas_user = require('../rotas_user');
@@ -8,6 +10,7 @@ const mqtt2 = require('../mqtt_node2');
 
 const subscriber = require('../subscriber')
 const publisher = require('../publisher')
+
 const cors = require('cors')
 require('dotenv').config()
 

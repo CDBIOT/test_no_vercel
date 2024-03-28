@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const mqtt = require('mqtt')
+const mqtt = require('mqtt');
+const { publishMessage } = require('./publisher');
 
 const options = {
   // Clean session
@@ -35,6 +36,23 @@ client.on('message', function (topic, message) {
   client.end()
 })
 
+ //Page published
+ const postPublished=( async (req, res) =>{
+  const {message,payload } = req.body
+     // const temps = req.params
+  const mess = {message,payload}
+  const create_temp = new publishMessage(req.body);
+  //temps.save()
+      try{
+          await client.publish(mess)
+          //temps.save()
+          console.log(message,payload)
+          res.status(201).json({message: "Lâmpada Ligada"})
+          }catch(error){
+          res.status(500).json({error: error})
+      }  
+  })
+  
 router.get('/', function (req, res) {
     /*Render the index.hbs and pass the View Model*/
     var vm = {
