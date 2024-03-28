@@ -53,7 +53,7 @@ client.on('message', function (topic, message) {
       }  
   })
   
-router.get('/', function (req, res) {
+const getMqtt = (async (req, res) => {
     /*Render the index.hbs and pass the View Model*/
     var vm = {
         title: 'MQTT',
@@ -67,4 +67,4 @@ router.get('/', function (req, res) {
 
 
 
-module.exports = mqtt;
+module.exports = {mqtt,getMqtt}
