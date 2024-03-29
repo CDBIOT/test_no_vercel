@@ -57,7 +57,7 @@ client.on('message', (topic,message, payload) => {
  }
 
 function publishMessage(topic,message){
-    console.log(`Sending Topic: ${topic}, Message: ${message}`);
+    console.log(`Sending Topic via publishMessage: ${topic}, Message: ${message}`);
     //client.publish(topic,message,{qos: 0, retain: false});
     //client.end()
 }

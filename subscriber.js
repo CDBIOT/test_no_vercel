@@ -51,7 +51,7 @@ client.on('message', (topic,message, payload) => {
 }
 
 function subscribeToTopic(topic,message){
-    console.log(`Subscribing to Topic: ${topic}`);
+    console.log(`Subscribing to Topic via subscribe function in: ${topic}`);
     //client.subscribe(topic,message,{qos: 0});
     //client.end()
 }
