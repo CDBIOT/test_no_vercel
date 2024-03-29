@@ -57,14 +57,14 @@ const getMqtt = (async (req, res) => {
   
 client.on('message', function (topic, message) {
   // message is Buffer
-  const m = message.toString();
+  //const m = message.toString();
   console.log(message.toString())
   client.end()
 })
     /*Render the index.hbs and pass the View Model*/
     var vm = {
         title: 'MQTT',
-        message: [new Date(), m]
+  //      message: [new Date(), m]
     }
     console.log(vm.message);
     res.render('mqtt/index', vm);
