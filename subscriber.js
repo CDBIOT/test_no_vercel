@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 var client
-const topic1 = 'Sala'
-const topic2 = 'Lamp'
-const topic3 = 'Aqua'
+const topic1 = 'bh/outTopic'
+const topic2 = 'room_temp'
+const topic3 = 'aqua_temp'
 
 const host = 'broker.mqtt-dashboard.com'
 const port = '1883'

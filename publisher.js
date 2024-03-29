@@ -5,9 +5,8 @@ const router = express.Router();
 var client
 
 const topic1 = 'bh/inTopic'
-
-const topic2 = 'Lamp'
-const topic3 = 'Aqua'
+const topic2 = 'room_light'
+const topic3 = 'aqua_light'
 
 
 const host = 'broker.mqtt-dashboard.com'
@@ -48,12 +47,6 @@ client.on('connect', () => {
   console.log('Connected:' + options.clientId)
 })
 
-client.on('message', (topic,message, payload) => {
-      temp = payload
-      local= topic
-      message=message
-      console.log('Received Message:'+message.toString(), topic, payload.toString())
-    })
  }
 
 function publishMessage(topic,message){
@@ -63,7 +56,7 @@ function publishMessage(topic,message){
 }
 
 connectToBroker();
-publishMessage("topic1","1");
+publishMessage("topic2","1");
 
 module.exports = {
     connectToBroker,
