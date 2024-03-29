@@ -64,7 +64,7 @@ client.on('message', function (topic, message) {
     /*Render the index.hbs and pass the View Model*/
     var vm = {
         title: 'MQTT',
-  //      message: [new Date(), m]
+        message: [new Date()]
     }
     console.log(vm.message);
     res.render('mqtt/index', vm);
