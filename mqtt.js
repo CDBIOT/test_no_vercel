@@ -74,4 +74,4 @@ client.on('message', function (topic, message) {
 
 
 
-module.exports = {mqtt,getMqtt}
+module.exports = {mqtt,getMqtt,postPublished}
