@@ -25,7 +25,7 @@ client.on('message', (topic, payload) => {
       temp = payload
       local= topic
       console.log('Received Message test_no_vercel:', topic, payload.toString())
-      client.publish('bh/inTopic', '0')
+      client.publish('room_light', '0')
      //res.status(200).json({m})
     client.end()
     })
