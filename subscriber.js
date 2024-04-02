@@ -67,6 +67,11 @@ client.on('message', (topic,message, payload) => {
     })
 }
 
+function publishMessage(topic,message){
+  console.log(`Sending Topic via publishMessage: ${topic}, Message: ${message}`);
+  //client.publish(topic,message,{qos: 0, retain: false});
+  //client.end()
+}
 function subscribeToTopic(topic2,message){
     console.log(`Subscribing to Topic via subscribe function in: ${topic2}`);
     //client.subscribe(topic,message,{qos: 0});
@@ -77,6 +82,7 @@ connectToBroker();
 subscribeToTopic("room_light","0");
 
 publishMessage("room_light","1");
+
 
 module.exports = {
     connectToBroker,
