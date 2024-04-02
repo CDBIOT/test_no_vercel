@@ -34,6 +34,19 @@ const options = {
 
 const client = mqtt.connect(connectUrl,options)
 
+client.on('connect', function () {
+    console.log('Connected to Publish')
+    
+    client.subscribe('Teste1', function (err) {
+  
+      console.log('Subscribe to topic ')
+      if (!err) {
+        client.publish('bh/inTopic', '1')
+      }
+    })
+    client.end()
+  
+  })
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
@@ -42,10 +55,12 @@ client.on("error",(err)=> {
 
 client.on("reconnect", () => {
     console.log("Reconnecting...");
+client.end()
 });
 
 client.on('connect', () => {
   console.log('Connected:' + options.clientId)
+  client.end()
 })
 
  }
@@ -53,7 +68,7 @@ client.on('connect', () => {
 function publishMessage(topic,message){
     console.log(`Sending Topic via publishMessage: ${topic}, Message: ${message}`);
     //client.publish(topic,message,{qos: 0, retain: false});
-    //client.end()
+    client.end()
 }
 
 //connectToBroker();
