@@ -61,5 +61,5 @@ client.on('message', function (topic, message) {
   })
 
 module.exports = {
-  mqtt2
+  mqtt
 }
