@@ -81,7 +81,7 @@ function subscribeToTopic(topic2,message){
 connectToBroker();
 subscribeToTopic("room_light","0");
 
-publishMessage("room_light","1");
+publishMessage("room_light","0");
 
 
 module.exports = {
