@@ -37,11 +37,11 @@ const client = mqtt.connect(connectUrl,options)
 client.on('connect', function () {
     console.log('Connected to Publish')
     
-    client.subscribe(topic2, function (err) {
+    client.subscribe("room_light", function (err) {
   
       console.log('Subscribe to topic ')
       if (!err) {
-        client.publish(topic2, '1')
+        client.publish("room_light", '1')
       }
     })
     client.end()
@@ -72,7 +72,7 @@ function publishMessage(topic,message){
 }
 
 connectToBroker();
-publishMessage("topic2",1);
+publishMessage("room_light","1");
 
 module.exports = {
     connectToBroker,

@@ -33,7 +33,7 @@ const client = mqtt.connect(connectUrl,options)
 client.on('connect', function () {
   console.log('Connected to Subscriber')
   
-  client.subscribe(topic2, function (err) {
+  client.subscribe("room_light", function (err) {
 
     console.log('Subscribe to room_light')
     if (!err) {
@@ -74,7 +74,7 @@ function subscribeToTopic(topic2,message){
 }
 
 connectToBroker();
-subscribeToTopic("topic2",0);
+subscribeToTopic("room_light","0");
 
 module.exports = {
     connectToBroker,
