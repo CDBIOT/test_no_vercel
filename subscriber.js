@@ -37,7 +37,7 @@ client.on('connect', function () {
 
     console.log('Subscribe to room_light')
     if (!err) {
-      client.publish(room_light, '0')
+      client.publish("room_light", '0')
     }
   })
   client.end()
