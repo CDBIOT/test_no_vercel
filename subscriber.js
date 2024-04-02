@@ -30,6 +30,20 @@ const options = {
 
 const client = mqtt.connect(connectUrl,options)
 
+client.on('connect', function () {
+  console.log('Connected to Subscriber')
+  
+  client.subscribe('Teste1', function (err) {
+
+    console.log('Subscribe to topic Temp_sala')
+    if (!err) {
+      client.publish('bh/inTopic', '0')
+    }
+  })
+  client.end()
+
+})
+
 client.on("error",(err)=> {
     console.log("Error: ",err);
     client.end();
@@ -41,6 +55,7 @@ client.on("reconnect", () => {
 
 client.on('connect', () => {
   console.log('Connected:' + options.clientId)
+  client.end();
 })
 
 client.on('message', (topic,message, payload) => {
@@ -48,6 +63,7 @@ client.on('message', (topic,message, payload) => {
       local= topic
       message=message
       console.log('Received Message:'+message.toString(), topic, payload.toString())
+      client.end();
     })
 }
 

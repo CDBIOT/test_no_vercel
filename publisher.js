@@ -68,7 +68,7 @@ client.on('connect', () => {
 function publishMessage(topic,message){
     console.log(`Sending Topic via publishMessage: ${topic}, Message: ${message}`);
     //client.publish(topic,message,{qos: 0, retain: false});
-    client.end()
+    //client.end()
 }
 
 //connectToBroker();
