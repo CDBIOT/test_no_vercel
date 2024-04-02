@@ -1,4 +1,4 @@
-const mqtt2 = require('mqtt');
+const mqtt = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
@@ -34,6 +34,13 @@ client.on('connect', function () {
   })
   client.end()
 
+})
+
+client.on('message', function (topic, message) {
+  // message is Buffer
+  const m = message.toString();
+  console.log(message.toString())
+  client.end()
 })
 
  //Page published
