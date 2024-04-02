@@ -23,6 +23,7 @@ const options = {
   connectTimeout: 4000,
   protocolId: "MQTT",
   protocolVersion: 4,
+  keepalive: 60,
   // Auth
 
   clientId: 'cdbiot123',
@@ -55,8 +56,8 @@ function publishMessage(topic,message){
     //client.end()
 }
 
-connectToBroker();
-publishMessage("topic2","1");
+//connectToBroker();
+//publishMessage("topic2","1");
 
 module.exports = {
     connectToBroker,

@@ -19,7 +19,8 @@ const options = {
     // Clean session
     keepalive: 60,
     clean: true,
-    connectTimeout: 30 * 1000,
+    connectTimeout: 3000,
+    keepalive: 60,
     // Auth
     clientId: 'cdbiot123',
     username: 'test',
