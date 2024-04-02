@@ -71,8 +71,8 @@ function publishMessage(topic,message){
     //client.end()
 }
 
-//connectToBroker();
-//publishMessage("topic2","1");
+connectToBroker();
+publishMessage("topic2",1);
 
 module.exports = {
     connectToBroker,
