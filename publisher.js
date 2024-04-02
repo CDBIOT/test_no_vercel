@@ -37,11 +37,11 @@ const client = mqtt.connect(connectUrl,options)
 client.on('connect', function () {
     console.log('Connected to Publish')
     
-    client.subscribe('Teste1', function (err) {
+    client.subscribe(topic2, function (err) {
   
       console.log('Subscribe to topic ')
       if (!err) {
-        client.publish('bh/inTopic', '1')
+        client.publish(topic2, '1')
       }
     })
     client.end()

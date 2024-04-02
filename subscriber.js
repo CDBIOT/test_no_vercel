@@ -33,11 +33,11 @@ const client = mqtt.connect(connectUrl,options)
 client.on('connect', function () {
   console.log('Connected to Subscriber')
   
-  client.subscribe('Teste1', function (err) {
+  client.subscribe(topic2, function (err) {
 
-    console.log('Subscribe to topic Temp_sala')
+    console.log('Subscribe to room_light')
     if (!err) {
-      client.publish('bh/inTopic', '0')
+      client.publish(room_light, '0')
     }
   })
   client.end()
@@ -60,15 +60,15 @@ client.on('connect', () => {
 
 client.on('message', (topic,message, payload) => {
       temp = payload
-      local= topic
+      local= topic2
       message=message
       console.log('Received Message:'+message.toString(), topic, payload.toString())
       client.end();
     })
 }
 
-function subscribeToTopic(topic,message){
-    console.log(`Subscribing to Topic via subscribe function in: ${topic}`);
+function subscribeToTopic(topic2,message){
+    console.log(`Subscribing to Topic via subscribe function in: ${topic2}`);
     //client.subscribe(topic,message,{qos: 0});
     //client.end()
 }
