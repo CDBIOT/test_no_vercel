@@ -16,7 +16,7 @@ const options = {
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
 client.on('connect', function () {
-  console.log('Connected on mqtt broker topic roo_light')
+  console.log('Connected on mqtt broker topic room_light')
   
   client.subscribe('room_light', function (err) {
 
@@ -69,9 +69,6 @@ client.on('message', function (topic, message) {
     console.log(vm.message);
     res.render('mqtt/index', vm);
 });
-
- 
-
 
 
 module.exports = {
