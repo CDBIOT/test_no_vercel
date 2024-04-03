@@ -33,7 +33,6 @@ const options = {
 }
 
 const client = mqtt.connect(connectUrl,options)
-
 client.on('connect', function () {
     console.log('Connected to Publish')
     
