@@ -23,11 +23,11 @@ const options = {
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
 client.on('connect', function () {
-  console.log('Connected on mqtt broker topic room_light')
+  console.log('Connected on mqtt2 room_light')
   
   client.subscribe('room_light', function (err) {
 
-    console.log('Subscribe to topic Room_light via mqtt')
+    console.log('Subscribe to topic Room_light via mqtt2')
     if (!err) {
       client.publish('room_light', '0')
     }
