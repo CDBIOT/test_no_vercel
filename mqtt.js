@@ -26,7 +26,7 @@ client.on('connect', function () {
       client.publish('room_light', '1')
     }
   })
-  client.end()
+ // client.end()
 
 })
 

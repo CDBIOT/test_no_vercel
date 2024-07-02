@@ -52,10 +52,10 @@ client.on("error",(err)=> {
     client.end();
 })
 
-client.on("reconnect", () => {
-    console.log("Reconnecting...");
-client.end()
-});
+// client.on("reconnect", () => {
+//     console.log("Reconnecting...");
+// client.end()
+// });
 
 client.on('connect', () => {
   console.log('Connected:' + options.clientId)
