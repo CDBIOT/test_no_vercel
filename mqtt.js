@@ -3,6 +3,7 @@ const router = express.Router();
 const mqtt = require('mqtt');
 const { publishMessage } = require('./publisher');
 
+
 const options = {
   // Clean session
   clean: true,
@@ -13,7 +14,7 @@ const options = {
   password: 'test',
  reconnectPeriod: 1000,
 }
-const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
+const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:8883', options)
 
 client.on('connect', function () {
   console.log('Connected on mqtt broker topic room_light')

@@ -20,7 +20,7 @@ const options = {
  reconnectPeriod: 1000,
 }
 
-const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
+const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:8884', options)
 
 client.on('connect', function () {
   console.log('Connected on mqtt2 room_light')
@@ -29,7 +29,7 @@ client.on('connect', function () {
 
     console.log('Subscribe to topic Room_light via mqtt2')
     if (!err) {
-      client.publish('room_light', '1')
+      client.publish('room_light', '0')
     }
   })
   client.end()
