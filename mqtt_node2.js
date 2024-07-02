@@ -29,7 +29,7 @@ client.on('connect', function () {
 
     console.log('Subscribe to topic Room_light via mqtt2')
     if (!err) {
-      client.publish('room_light', '0')
+      client.publish('room_light', '1')
     }
   })
   client.end()
