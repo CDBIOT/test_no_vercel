@@ -68,7 +68,7 @@ client.on('message', function (topic, message) {
         message: [new Date()]
     }
     console.log(vm.message);
-    res.render('mqtt/index', vm);
+    //res.render('mqtt/index', vm);
 });
 
 

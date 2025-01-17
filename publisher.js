@@ -40,7 +40,7 @@ client.on('connect', function () {
   
       console.log('Subscribe to topic ')
       if (!err) {
-        client.publish("room_light", '0')
+        client.publish("room_light", '1')
       }
     })
     client.end()
@@ -65,13 +65,13 @@ client.on('connect', () => {
  }
 
 function publishMessage(topic,message){
-    console.log(`Sending Topic via publishMessage: ${topic}, Message: ${message}`);
+    console.log(`Sending Topic via publisher: ${topic}, Message: ${message}`);
     //client.publish(topic,message,{qos: 0, retain: false});
     //client.end()
 }
 
 connectToBroker();
-publishMessage("room_light","0");
+publishMessage("room_light","1");
 
 module.exports = {
     connectToBroker,
