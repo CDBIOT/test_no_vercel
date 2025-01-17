@@ -43,7 +43,7 @@ app.post('/temps', rotas_temps.postTemps)
 app.delete('/temps',rotas_temps.deleteTemp)
 
 app.get('/publisher', publisher.publishMessage)
-app.post('/subscriber', subscriber.subscribeToTopic)
+app.get('/subscriber', subscriber.subscribeToTopic)
 
   
 app.get ('/user',rotas_user.getUser)
