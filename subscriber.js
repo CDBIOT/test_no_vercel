@@ -40,7 +40,7 @@ client.on('connect', function () {
       client.publish("room_light", '0')
     }
   })
-  client.end()
+  //client.end()
 
 })
 
