@@ -34,7 +34,7 @@ client.on('message', function (topic, message) {
   // message is Buffer
   const m = message.toString();
   console.log(message.toString())
-  client.end()
+ // client.end()
 })
 
  //Page published
