@@ -57,10 +57,6 @@ client.on("error",(err)=> {
 // client.end()
 // });
 
-client.on('connect', () => {
-  console.log('Connected:' + options.clientId)
- // client.end()
-})
 
  }
 

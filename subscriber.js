@@ -49,14 +49,9 @@ client.on("error",(err)=> {
     client.end();
 })
 
-client.on("reconnect", () => {
-    console.log("Reconnecting...");
-});
-
-client.on('connect', () => {
-  console.log('Connected:' + options.clientId)
- // client.end();
-})
+// client.on("reconnect", () => {
+//     console.log("Reconnecting...");
+// });
 
 client.on('message', (topic,message, payload) => {
       temp = payload
