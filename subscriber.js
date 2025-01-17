@@ -55,7 +55,7 @@ client.on("reconnect", () => {
 
 client.on('connect', () => {
   console.log('Connected:' + options.clientId)
-  client.end();
+ // client.end();
 })
 
 client.on('message', (topic,message, payload) => {
@@ -63,7 +63,7 @@ client.on('message', (topic,message, payload) => {
       local= topic2
       message=message
       console.log('Received Message:'+message.toString(), topic, payload.toString())
-      client.end();
+     // client.end();
     })
 }
 

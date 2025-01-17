@@ -43,7 +43,7 @@ client.on('connect', function () {
         client.publish("room_light", '1')
       }
     })
-    client.end()
+   // client.end()
   
   })
 
@@ -59,7 +59,7 @@ client.on("error",(err)=> {
 
 client.on('connect', () => {
   console.log('Connected:' + options.clientId)
-  client.end()
+ // client.end()
 })
 
  }
