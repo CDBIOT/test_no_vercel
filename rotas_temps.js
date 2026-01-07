@@ -9,7 +9,7 @@ const getMqtt=((req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
-            temp: temp,
+            temp: payload,
             local: local,
             dia: date.getDate(),   
             mes: date.getMonth() + 1,
@@ -26,7 +26,7 @@ const getMqtt=((req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
-            temp2: temp2,
+            temp2: payload,
             local2: local2,
             dia: date.getDate(),   
             mes: date.getMonth() + 1,
