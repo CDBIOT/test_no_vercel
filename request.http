@@ -7,11 +7,24 @@ content-type: application/json
 }
 
 ###
+GET https://test-no-vercel.vercel.app/publisher
+
+###
+GET https://test-no-vercel.vercel.app/subscriber
+
+
+###
 GET https://test-no-vercel.vercel.app/mqtt
+
+###
+GET https://test-no-vercel.vercel.app/mqtt2
 
 ###
 GET https://test-no-vercel.vercel.app/temps
 
+
+###
+GET https://test-no-vercel.vercel.app/user
 
 ###
 DELETE https://super-server-nu.vercel.app/products/65085cd1976d83e3f5f49136
@@ -47,10 +60,10 @@ content-type: application/json
 {
 //"_id": "2",
 "local": "sala",
-"temperatura": "14",
-"dia":"18",
-"mes":"06",
-"ano":"2022"
+"temperatura": "22",
+"dia":"07",
+"mes":"01",
+"ano":"2026"
 }
 
 ###
