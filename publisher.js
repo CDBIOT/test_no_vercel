@@ -67,7 +67,7 @@ function publishMessage(topic,message){
 }
 
 connectToBroker();
-publishMessage("room_light","0");
+publishMessage("room_light","0");  
 
 module.exports = {
     connectToBroker,
