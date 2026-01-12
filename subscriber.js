@@ -54,7 +54,7 @@ client.on("error",(err)=> {
 // });
 
 client.on('message', (topic,message, payload) => {
-      temp = payload
+      temp = payload.toString(),
       local= topic2
       message=message
       console.log('Received Message:'+message.toString(), topic, payload.toString())
