@@ -50,23 +50,23 @@ client.on('message', function (topic, message) {
  // client.end()
 })
 
- //Page published
- const postPublished=( async (req, res) =>{
-  const {message,payload } = req.body
-     // const temps = req.params
-  const mess = {message,payload}
-  const create_temp = new publishMessage(req.body);
-  //temps.save()
-      try{
-          await client.publish(mess)
-          //temps.save()
-          console.log(message,payload)
-          res.status(201).json({message: "Temperatura recebida"})
-          }catch(error){
-          res.status(500).json({error: error})
-            console.log('ERRO ao receber mensagem mqtt')
-      }  
-  })
+//  //Page published
+//  const postPublished=( async (req, res) =>{
+//   const {message,payload } = req.body
+//      // const temps = req.params
+//   const mess = {message,payload}
+//   const create_temp = new publishMessage(req.body);
+//   //temps.save()
+//       try{
+//           await client.publish(mess)
+//           //temps.save()
+//           console.log(message,payload)
+//           res.status(201).json({message: "Temperatura recebida"})
+//           }catch(error){
+//           res.status(500).json({error: error})
+//             console.log('ERRO ao receber mensagem mqtt')
+//       }  
+//   })
   
 const getMqtt = (async (req, res) => {
   
@@ -88,6 +88,6 @@ client.on('message', function (topic, message) {
 
 module.exports = {
   mqtt,
-  getMqtt,
+  
   postPublished
 }
