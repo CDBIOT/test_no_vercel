@@ -18,11 +18,9 @@ const options = {
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
 client.on('connect', function () {
-
   console.log('Connected on mqtt broker via mqtt.js')
   
   client.subscribe('room_temp', function (err) {
-
     console.log('Subscribe to topic Room_temp via mqtt')
     if (!err) {
       //client.publish('room_light', '1')
@@ -68,26 +66,26 @@ client.on('message', function (topic, message) {
 //       }  
 //   })
   
-const getMqtt = (async (req, res) => {
+// const getMqtt = (async (req, res) => {
   
-client.on('message', function (topic, message) {
-  // message is Buffer
-  //const m = message.toString();
-  console.log(message.toString())
-  //client.end()
-})
-    /*Render the index.hbs and pass the View Model*/
-    var vm = {
-        title: 'MQTT',
-        message: [new Date()]
-    }
-    console.log(vm.message);
-    //res.render('mqtt/index', vm);
-});
+// client.on('message', function (topic, message) {
+//   // message is Buffer
+//   //const m = message.toString();
+//   console.log(message.toString())
+//   //client.end()
+//  })
+//     /*Render the index.hbs and pass the View Model*/
+//     var vm = {
+//         title: 'MQTT',
+//         message: [new Date()]
+//     }
+//     console.log(vm.message);
+//     //res.render('mqtt/index', vm);
+// });
 
 
 module.exports = {
-  mqtt,
+ // mqtt,
   
-  postPublished
+ // postPublished
 }
