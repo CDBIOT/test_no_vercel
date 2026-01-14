@@ -32,16 +32,32 @@ const client = mqtt.connect(connectUrl,options)
 client.on('connect', function () {
   console.log('Connected to Subscriber')
   
-  client.subscribe("room_temp", function (err) {
+  // client.subscribe("room_temp", function (err) {
+
+  //   console.log('Subscribe to room_temp')
+  //   if (!err) {
+  //    // client.publish("room_light", '0')
+  //   }
+  // })
+  // //client.end()
+
+})
+
+client.subscribe("room_light", function (err) {
+
+    console.log('Subscribe to room_light')
+    if (!err) {
+      client.publish("room_light", '0')
+    }
+})
+client.subscribe("room_temp", function (err) {
 
     console.log('Subscribe to room_temp')
     if (!err) {
-     // client.publish("room_light", '0')
+   
     }
-  })
-  //client.end()
-
 })
+  //client.end()
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
@@ -68,14 +84,14 @@ function publishMessage(topic,message){
 }
 function subscribeToTopic(topic2,message){
     console.log(`Subscribing to Topic via subscribe function in: ${topic2}`);
-    client.subscribe(topic,message,{qos: 0});
+    client.subscribe(topic2,message,{qos: 0});
     //client.end()
 }
 
 connectToBroker();
 //subscribeToTopic("room_light","0");
 
-//publishMessage("room_light","0");
+publishMessage("room_light","0");
 
 
 module.exports = {
