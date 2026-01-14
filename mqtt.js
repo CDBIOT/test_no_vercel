@@ -66,22 +66,22 @@ client.on('message', function (topic, message) {
 //       }  
 //   })
   
-// const getMqtt = (async (req, res) => {
+const mqtt = (async (req, res) => {
   
-// client.on('message', function (topic, message) {
-//   // message is Buffer
-//   //const m = message.toString();
-//   console.log(message.toString())
-//   //client.end()
-//  })
-//     /*Render the index.hbs and pass the View Model*/
-//     var vm = {
-//         title: 'MQTT',
-//         message: [new Date()]
-//     }
-//     console.log(vm.message);
-//     //res.render('mqtt/index', vm);
-// });
+client.on('message', function (topic, message) {
+  // message is Buffer
+  //const m = message.toString();
+  console.log(message.toString())
+  //client.end()
+ })
+    /*Render the index.hbs and pass the View Model*/
+    var vm = {
+        title: 'MQTT',
+        message: [new Date()]
+    }
+    console.log(vm.message);
+    //res.render('mqtt/index', vm);
+});
 
 
 module.exports = {
