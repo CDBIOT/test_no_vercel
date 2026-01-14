@@ -85,7 +85,7 @@ client.on('message', function (topic, message) {
 
 
 module.exports = {
- // mqtt,
+  mqtt,
   
  // postPublished
 }
