@@ -20,7 +20,6 @@ const options = {
     keepalive: 60,
     clean: true,
     connectTimeout: 3000,
-    keepalive: 60,
     // Auth
     clientId: 'cdbiot123',
     username: 'test',

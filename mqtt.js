@@ -17,13 +17,13 @@ const options = {
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:8883', options)
 
 client.on('connect', function () {
-  console.log('Connected on mqtt broker topic room_light')
+  console.log('Connected on mqtt broker topic room_temp')
   
-  client.subscribe('room_light', function (err) {
+  client.subscribe('room_temp', function (err) {
 
-    console.log('Subscribe to topic Room_light via mqtt')
+    console.log('Subscribe to topic Room_temp via mqtt')
     if (!err) {
-      client.publish('room_light', '1')
+      //client.publish('room_light', '1')
     }
   })
  // client.end()
@@ -48,7 +48,7 @@ client.on('message', function (topic, message) {
           await client.publish(mess)
           //temps.save()
           console.log(message,payload)
-          res.status(201).json({message: "Lâmpada Ligada"})
+          res.status(201).json({message: "Temperatura recebida"})
           }catch(error){
           res.status(500).json({error: error})
       }  
