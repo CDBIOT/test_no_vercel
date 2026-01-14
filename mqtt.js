@@ -14,6 +14,7 @@ const options = {
   password: 'test',
  reconnectPeriod: 1000,
 }
+
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
 client.on('connect', function () {
@@ -32,10 +33,20 @@ client.on('connect', function () {
 
 })
 
+client.on("error",(err)=> {
+    console.log("Error: ",err);
+    client.end();
+})
+
 client.on('message', function (topic, message) {
   // message is Buffer
   const m = message.toString();
-  console.log(message.toString())
+  console.log(m.toString())
+
+      temp = payload.toString(),
+      local= topic2
+      message=message
+      console.log('Received Message:'+message.toString(), topic, payload.toString())
  // client.end()
 })
 
@@ -63,7 +74,7 @@ client.on('message', function (topic, message) {
   // message is Buffer
   //const m = message.toString();
   console.log(message.toString())
-  client.end()
+  //client.end()
 })
     /*Render the index.hbs and pass the View Model*/
     var vm = {
