@@ -17,7 +17,7 @@ const options = {
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
 client.on('connect', function () {
-  console.log('Connected on mqtt broker topic room_temp')
+  console.log('Connected on mqtt broker via mqtt.js')
   
   client.subscribe('room_temp', function (err) {
 
