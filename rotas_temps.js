@@ -9,8 +9,8 @@ const getMqtt=((req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
-            //temp: payload,
-            temp: payload.toString(),
+            temp: temp,
+            //temp: payload.toString(),
             local: local,
             dia: date.getDate(),   
             mes: date.getMonth() + 1,
