@@ -17,6 +17,7 @@ const options = {
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
 client.on('connect', function () {
+
   console.log('Connected on mqtt broker via mqtt.js')
   
   client.subscribe('room_temp', function (err) {
@@ -24,6 +25,7 @@ client.on('connect', function () {
     console.log('Subscribe to topic Room_temp via mqtt')
     if (!err) {
       //client.publish('room_light', '1')
+       console.log('ERRO ao connectar mqtt')
     }
   })
  // client.end()
@@ -51,6 +53,7 @@ client.on('message', function (topic, message) {
           res.status(201).json({message: "Temperatura recebida"})
           }catch(error){
           res.status(500).json({error: error})
+            console.log('ERRO ao receber mensagem mqtt')
       }  
   })
   
