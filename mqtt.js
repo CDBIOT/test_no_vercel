@@ -17,6 +17,7 @@ const options = {
 
 const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
+ const conect = (async (req, res) => {
 client.on('connect', function () {
   console.log('Connected on mqtt broker via mqtt.js')
   
@@ -30,23 +31,24 @@ client.on('connect', function () {
  // client.end()
 
 })
+ })
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
     client.end();
 })
 
-client.on('message', function (topic, message) {
-  // message is Buffer
-  const m = message.toString();
-  console.log(m.toString())
+// client.on('message', function (topic, message) {
+//   // message is Buffer
+//   const m = message.toString();
+//   console.log(m.toString())
 
-      temp = payload.toString(),
-      local= topic2
-      message=message
-      console.log('Received Message:'+message.toString(), topic, payload.toString())
- // client.end()
-})
+//       temp = payload.toString(),
+//       local= topic2
+//       message=message
+//       console.log('Received Message:'+message.toString(), topic, payload.toString())
+//  // client.end()
+// })
 
 //  //Page published
 //  const postPublished=( async (req, res) =>{
@@ -66,26 +68,27 @@ client.on('message', function (topic, message) {
 //       }  
 //   })
   
-const mqtt = (async (req, res) => {
+// const mqtt = (async (req, res) => {
   
-client.on('message', function (topic, message) {
-  // message is Buffer
-  //const m = message.toString();
-  console.log(message.toString())
-  //client.end()
- })
-    /*Render the index.hbs and pass the View Model*/
-    var vm = {
-        title: 'MQTT',
-        message: [new Date()]
-    }
-    console.log(vm.message);
-    //res.render('mqtt/index', vm);
-});
+// client.on('message', function (topic, message) {
+//   // message is Buffer
+//   //const m = message.toString();
+//   console.log(message.toString())
+//   //client.end()
+//  })
+//     /*Render the index.hbs and pass the View Model*/
+//     var vm = {
+//         title: 'MQTT',
+//         message: [new Date()]
+//     }
+//     console.log(vm.message);
+//     //res.render('mqtt/index', vm);
+// });
 
 
 module.exports = {
-  mqtt,
+  //mqtt,
+  conect,
   
  // postPublished
 }
