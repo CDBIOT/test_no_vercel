@@ -20,7 +20,7 @@ const connectUrl = `mqtt://${host}:${port}`
 const options = {
   // Clean session
   clean: true,
-  connectTimeout: 4000,
+  connectTimeout: 1000,
   protocolId: "MQTT",
   protocolVersion: 4,
   keepalive: 60,

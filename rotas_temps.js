@@ -5,6 +5,25 @@ const Temps = require('./temps')
 var fs = require('fs');
 //app.use(mqtt);
 
+
+const Mqtt=((req, res) =>{
+    try{ 
+        date = new Date() 
+        var vm = {
+            temp: payload.temp,
+            //temp: payload.toString(),
+            local: local,
+            dia: date.getDate(),   
+            mes: date.getMonth() + 1,
+            ano: date.getFullYear()
+        }
+        console.log(vm);
+        res.status(200).json({vm})
+     }catch(error){
+         res.status(500).json(error)
+     }  
+    })
+
 const getMqtt=((req, res) =>{
     try{ 
         date = new Date() 
@@ -150,6 +169,7 @@ const deleteTemp = (async (req, res) => {
 
 
 module.exports = {
+        Mqtt,
         getTemps,
         getMqtt,
         getMqtt2,

@@ -35,7 +35,7 @@ app.get('/', (req, res) =>{
         })
 })
 
-app.get('/mqtt',mqtt.conect)
+app.get('/mqtt',rotas_temps.Mqtt)
 app.get('/temps', rotas_temps.getTemps)
 app.get('/mqtt1',rotas_temps.getMqtt)
 app.get('/mqtt2', rotas_temps.getMqtt2)
