@@ -10,13 +10,6 @@ const topic3 = 'aqua_temp'
 const host = 'broker.mqtt-dashboard.com'
 const port = '1883'
 
-
-
-function connectToBroker(){
-
-const connectUrl  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
-
-// const connectUrl = `mqtt://${host}:${port}`
 const options = {
     // Clean session
     keepalive: 60,
@@ -28,6 +21,13 @@ const options = {
     password: 'test',
    reconnectPeriod: 1000,
   }
+
+
+function connectToBroker(){
+
+const connectUrl  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
+
+// const connectUrl = `mqtt://${host}:${port}`
 
 const client = mqtt.connect(connectUrl,options)
 

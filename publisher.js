@@ -11,12 +11,6 @@ const host = 'broker.mqtt-dashboard.com'
 const protocol = "mqtt"
 const port = '1883'
 
-function connectToBroker(){
-
-const connectUrl  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
-
-//const connectUrl = `mqtt://${host}:${port}`
-
 const options = {
   // Clean session
   clean: true,
@@ -31,6 +25,15 @@ const options = {
   password: 'test',
  reconnectPeriod: 1000,
 }
+
+
+
+function connectToBroker(){
+
+const connectUrl  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
+
+//const connectUrl = `mqtt://${host}:${port}`
+
 
 const client = mqtt.connect(connectUrl,options)
 
