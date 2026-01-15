@@ -27,14 +27,14 @@ const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', option
 
 try{
     client.on('connect', () => {
-      setConnectionStatus(true)
-      console.log('Connected to MQTT broker')
+    
+      console.log('Connected to MQTT broker via mqttjs')
     })
    }catch (error){console.log('mqtt.connect error',error)}
    
 try{
     client.subscribe(topic, () => {
-      console.log("Subscribe to topic:", + topic)
+      console.log("Subscribe to topic mqttjs:", + topic)
     }) }catch(error)
     {
       console.error(error)
@@ -46,22 +46,26 @@ try{
     });
     
     client.on('message', (topic, payload) => {
-    setMessages(payload.toString())
-         //temp = payload
-         //local= topic
+         temp = payload
+         local= topic
          console.log('Received Message:',+ messages + payload.toString(),"From:", + topic)
          console.log('Received Message:',+ messages + payload)
-       // res.status(200).json({m})
+        res.status(200).json({m})
      })
-    
 }
-// client.subscribe('room_temp', function (err) {
-//     console.log('Subscribe to topic Room_temp via mqtt')
-//     if (!err) {
-//       //client.publish('room_light', '1')
-//        console.log('ERRO ao connectar mqtt')
-//     }
-//   })
+
+client.subscribe('room_temp', function (err) {
+    console.log('Subscribe to topic Room_temp via mqttjs')
+         temp = payload
+         local= topic
+         console.log('Received Message:',+ messages + payload.toString(),"From:", + topic)
+         console.log('Received Message:',+ messages + payload)
+        res.status(200).json({m})
+
+     if (!err) {
+        console.log('ERRO ao connectar mqtt')
+     }
+   })
 
 // client.on('message', function (topic, message) {
 //   // message is Buffer
