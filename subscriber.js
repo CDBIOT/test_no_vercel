@@ -14,7 +14,9 @@ const port = '1883'
 
 function connectToBroker(){
 
-const connectUrl = `mqtt://${host}:${port}`
+const connectUrl  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
+
+// const connectUrl = `mqtt://${host}:${port}`
 const options = {
     // Clean session
     keepalive: 60,

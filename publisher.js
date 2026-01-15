@@ -2,8 +2,6 @@ const mqtt = require('mqtt');
 const express = require('express');
 const router = express.Router();
 
-var client
-
 const topic1 = 'bh/inTopic'
 const topic2 = 'room_light'
 const topic3 = 'aqua_light'
@@ -15,7 +13,9 @@ const port = '1883'
 
 function connectToBroker(){
 
-const connectUrl = `mqtt://${host}:${port}`
+const connectUrl  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
+
+//const connectUrl = `mqtt://${host}:${port}`
 
 const options = {
   // Clean session
