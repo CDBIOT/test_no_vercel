@@ -7,7 +7,7 @@ const { publishMessage } = require('./publisher');
 const options = {
   // Clean session
   clean: true,
-  connectTimeout: 4000,
+  connectTimeout: 1000,
   // Auth
   clientId: 'cdbiot123',
   username: 'test',
@@ -17,30 +17,44 @@ const options = {
 
 //const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
+//const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
+
+function conect() {
+
+//const client = (mqtt.connect(connectUrl,options))
+
 const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
 
-const conect = async (req, res) => {
-//const client = mqtt.connect(process.env.MQTT_URL);
-//const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
-//const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
-
-    client.on("connect", () => {
-      console.log("MQTT conectado");
-      //client.subscribe("room_temp");
+try{
+    client.on('connect', () => {
+      setConnectionStatus(true)
+      console.log('Connected to MQTT broker')
+    })
+   }catch (error){console.log('mqtt.connect error',error)}
+   
+try{
+    client.subscribe(topic, () => {
+      console.log("Subscribe to topic:", + topic)
+    }) }catch(error)
+    {
+      console.error(error)
+    }
+    
+    client.stream.on('error', (err) => {
+      console.error(`Connection failed: ${err.message}`);
+      client.end();
     });
-};
-
-// client.on("message", (topic, message) => {
-// const payload = JSON.parse(message.toString());
-// console.log("MQTT:", payload);
-// });
-
-// client.on("error",(err)=> {
-//     console.log("Error: ",err);
-//     client.end();
-// })
-
-
+    
+    client.on('message', (topic, payload) => {
+    setMessages(payload.toString())
+         //temp = payload
+         //local= topic
+         console.log('Received Message:',+ messages + payload.toString(),"From:", + topic)
+         console.log('Received Message:',+ messages + payload)
+       // res.status(200).json({m})
+     })
+    
+}
 // client.subscribe('room_temp', function (err) {
 //     console.log('Subscribe to topic Room_temp via mqtt')
 //     if (!err) {
