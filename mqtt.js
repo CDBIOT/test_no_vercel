@@ -17,40 +17,38 @@ const options = {
 
 //const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
-const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
+//const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
 
 const conect = async (req, res) => {
 //const client = mqtt.connect(process.env.MQTT_URL);
-//const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884', options)
+const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884/mqtt', options)
 //const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
     client.on("connect", () => {
       console.log("MQTT conectado");
-      client.subscribe("room_temp");
+      //client.subscribe("room_temp");
     });
 };
 
-client.on("message", (topic, message) => {
-const payload = JSON.parse(message.toString());
-console.log("MQTT:", payload);
+// client.on("message", (topic, message) => {
+// const payload = JSON.parse(message.toString());
+// console.log("MQTT:", payload);
+// });
+
+// client.on("error",(err)=> {
+//     console.log("Error: ",err);
+//     client.end();
+// })
 
 
-    });
+// client.subscribe('room_temp', function (err) {
+//     console.log('Subscribe to topic Room_temp via mqtt')
+//     if (!err) {
+//       //client.publish('room_light', '1')
+//        console.log('ERRO ao connectar mqtt')
+//     }
+//   })
 
-client.on("error",(err)=> {
-    console.log("Error: ",err);
-    client.end();
-})
-
-
-client.subscribe('room_temp', function (err) {
-    console.log('Subscribe to topic Room_temp via mqtt')
-    if (!err) {
-      //client.publish('room_light', '1')
-       console.log('ERRO ao connectar mqtt')
-    }
-  
-  })
 // client.on('message', function (topic, message) {
 //   // message is Buffer
 //   const m = message.toString();
