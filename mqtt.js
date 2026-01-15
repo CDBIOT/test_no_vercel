@@ -17,13 +17,13 @@ const options = {
 
 //const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
-//const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884', options)
+const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884', options)
 
  const conect = async (req, res) => {
   try {
     //const client = mqtt.connect(process.env.MQTT_URL);
     
-const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884', options)
+//const client  = mqtt.connect('wss://broker.mqtt-dashboard.com:8884', options)
 //const client  = mqtt.connect('mqtt://broker.mqtt-dashboard.com:1883', options)
 
     client.on("connect", () => {
