@@ -50,6 +50,7 @@ client.subscribe("room_light", function (err) {
     console.log('Subscribe to room_light')
     if (!err) {
       client.publish("room_light", '0')
+      //body: {"topic":'room_light',"message": '0'}
     }
 })
 client.subscribe("room_temp", function (err) {

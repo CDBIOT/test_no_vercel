@@ -7,6 +7,9 @@ var fs = require('fs');
 
 
 const Mqtt=((req, res) =>{
+    
+//method: 'GET',	mode: 'cors',
+//headers: { "Content-type": 'application/json'},
     try{ 
         date = new Date() 
         var vm = {

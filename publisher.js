@@ -67,6 +67,9 @@ client.on("error",(err)=> {
 
 function publishMessage(topic,message){
     console.log(`Sending Topic via publisher: ${topic}, Message: ${message}`);
+    
+//body: {"topic":'room_light',"message": '1'}
+//body: JSON.stringify({"topic":'room_light',"message": '1'})
     //client.publish(topic,message,{qos: 0, retain: false});
     //client.end()
 }
