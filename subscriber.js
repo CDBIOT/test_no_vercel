@@ -12,6 +12,7 @@ const port = '1883'
 
 const options = {
     // Clean session
+    protocolId: "MQTT",
     keepalive: 60,
     clean: true,
     connectTimeout: 3000,
@@ -24,26 +25,20 @@ const options = {
 
 
 function connectToBroker(){
-  
+
 const connectUrl = 'wss://broker.mqtt-dashboard.com:8884/mqtt'
 
 // const connectUrl = `mqtt://${host}:${port}`
 
 const client = mqtt.connect(connectUrl,options)
 
+try{
 client.on('connect', function () {
   console.log('Connected to Subscriber')
   
-  // client.subscribe("room_temp", function (err) {
-
-  //   console.log('Subscribe to room_temp')
-  //   if (!err) {
-  //    // client.publish("room_light", '0')
-  //   }
-  // })
   // //client.end()
-
-})
+})  
+}catch (error){console.log('mqtt.connect error',error)}
 
 client.subscribe("room_light", function (err) {
 

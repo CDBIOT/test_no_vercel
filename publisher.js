@@ -27,30 +27,30 @@ const options = {
 }
 
 
-
 function connectToBroker(){
 
 const connectUrl = 'wss://broker.mqtt-dashboard.com:8884/mqtt'
 
 //const connectUrl = `mqtt://${host}:${port}`
 
-
 const client = mqtt.connect(connectUrl,options)
 
+try{
 client.on('connect', function () {
   
     console.log('Connected to Publish')
-    
-    client.subscribe("room_light", function (err) {
+   // client.end()
+  })
+   }catch (error){console.log('mqtt.connect error',error)}
+
+try{
+client.subscribe("room_light", function (err) {
   
       console.log('Subscribe to topic ')
       if (!err) {
         client.publish("room_light", '0')
       }
-    })
-   // client.end()
-  
-  })
+    })}catch(error){console.error(error)}
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
@@ -66,6 +66,7 @@ client.on("error",(err)=> {
  }
 
 function publishMessage(topic,message){
+
     console.log(`Sending Topic via publisher: ${topic}, Message: ${message}`);
     
 //body: {"topic":'room_light',"message": '1'}
