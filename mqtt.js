@@ -35,10 +35,7 @@ try{
 try{
     client.subscribe(topic, () => {
       console.log("Subscribe to topic mqttjs:", + topic)
-    }) }catch(error)
-    {
-      console.error(error)
-    }
+    }) }catch(error){console.error(error)}
     
     client.stream.on('error', (err) => {
       console.error(`Connection failed: ${err.message}`);
@@ -56,8 +53,8 @@ try{
 
 client.subscribe('room_temp', function (err) {
     console.log('Subscribe to topic Room_temp via mqttjs')
-         temp = payload
-         local= topic
+         //temp = payload
+         //local= topic
          console.log('Received Message:',+ messages + payload.toString(),"From:", + topic)
          console.log('Received Message:',+ messages + payload)
         res.status(200).json({m})
