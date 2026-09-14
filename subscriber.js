@@ -48,6 +48,7 @@ client.subscribe("room_light", function (err) {
       //body: {"topic":'room_light',"message": '0'}
     }
 })
+
 client.subscribe("room_temp", function (err) {
 
     console.log('Subscribe to room_temp')

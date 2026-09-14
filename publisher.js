@@ -37,12 +37,12 @@ const client = mqtt.connect(connectUrl,options)
 
 try{
 client.on('connect', function () {
-  
     console.log('Connected to Publish')
    // client.end()
   })
    }catch (error){console.log('mqtt.connect error',error)}
 
+   
 try{
 client.subscribe("room_light", function (err) {
   
@@ -51,6 +51,7 @@ client.subscribe("room_light", function (err) {
         client.publish("room_light", '0')
       }
     })}catch(error){console.error(error)}
+
 
 client.on("error",(err)=> {
     console.log("Error: ",err);
@@ -61,12 +62,10 @@ client.on("error",(err)=> {
 //     console.log("Reconnecting...");
 // client.end()
 // });
-
-
  }
 
-function publishMessage(topic,message){
 
+function publishMessage(topic,message){
     console.log(`Sending Topic via publisher: ${topic}, Message: ${message}`);
     
 //body: {"topic":'room_light',"message": '1'}
