@@ -26,7 +26,7 @@ const options = {
 
 function connectToBroker(){
 
-const connectUrl = 'wss://broker.mqtt-dashboard.com:8884/mqtt'
+const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
 
 // const connectUrl = `mqtt://${host}:${port}`
 
