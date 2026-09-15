@@ -35,12 +35,12 @@ function connectToBroker(){
 
 // const client = mqtt.connect(connectUrl,options)
 
-try{
-client.on('connect', function () {
-    console.log('Connected to Publish')
-   // client.end()
-  })
-   }catch (error){console.log('mqtt.connect error',error)}
+// try{
+// client.on('connect', function () {
+//     console.log('Connected to Publish')
+//    // client.end()
+//   })
+//    }catch (error){console.log('mqtt.connect error',error)}
 
    
 try{

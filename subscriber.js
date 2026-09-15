@@ -25,20 +25,22 @@ const options = {
 
 
 function connectToBroker(){
-
-const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
+//conexão está sendo realizada no frontend
+//const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
 
 // const connectUrl = `mqtt://${host}:${port}`
 
-const client = mqtt.connect(connectUrl,options)
+ //const client = mqtt.connect(connectUrl,options)
 
-try{
-client.on('connect', function () {
-  console.log('Connected to Subscriber')
+// try{
+// client.on('connect', function () {
+//   console.log('Connected to Subscriber')
   
-  // //client.end()
-})  
-}catch (error){console.log('mqtt.connect error',error)}
+//   // //client.end()
+// })  
+// }catch (error){console.log('mqtt.connect error',error)}
+
+
 
 client.subscribe("room_light", function (err) {
 
