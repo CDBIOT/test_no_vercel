@@ -1,0 +1,173 @@
+const express = require('express');
+const router = express.Router();
+const mqtt = require('mqtt');
+
+require('dotenv').config();
+
+const cors = require('cors');
+const http = require('http');
+const { WebSocketServer, WebSocket } = require('ws');
+
+// ---------- Config ----------
+const {
+  HIVEMQ_HOST,
+  HIVEMQ_PORT = '8883',
+  HIVEMQ_USERNAME,
+  HIVEMQ_PASSWORD,
+  MQTT_TOPIC = 'robot/battery/telemetry',
+  PORT = 3001,
+  ALLOWED_ORIGINS = '',
+} = process.env;
+
+if (!HIVEMQ_HOST || !HIVEMQ_USERNAME || !HIVEMQ_PASSWORD) {
+  console.error(
+    '[config] Faltam variáveis de ambiente HIVEMQ_HOST / HIVEMQ_USERNAME / HIVEMQ_PASSWORD. Veja .env.example.'
+  );
+  process.exit(1);
+}
+
+const allowedOrigins = ALLOWED_ORIGINS.split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+// Guarda a última leitura recebida de cada "dispositivo" (topic completo),
+// para que um cliente que conecta depois já receba o estado atual.
+const lastReadings = new Map();
+
+// ---------- Express (health check + REST simples) ----------
+const app = express();
+app.use(
+  cors({
+    origin: allowedOrigins.length ? allowedOrigins : true,
+  })
+);
+
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    mqttConnected: mqttClient.connected,
+    clientsConnected: wss ? wss.clients.size : 0,
+    uptimeSeconds: process.uptime(),
+  });
+});
+
+// Retorna a última leitura conhecida (útil pro frontend carregar o estado inicial via HTTP)
+app.get('/battery/latest', (req, res) => {
+  const data = lastReadings.get(MQTT_TOPIC) || null;
+  res.json({ topic: MQTT_TOPIC, data });
+});
+
+const server = http.createServer(app);
+
+// ---------- WebSocket ----------
+const wss = new WebSocketServer({ server, path: '/ws' });
+
+function broadcast(payload) {
+  const message = JSON.stringify(payload);
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
+}
+
+wss.on('connection', (ws, req) => {
+  console.log(`[ws] cliente conectado (${req.socket.remoteAddress})`);
+
+  // Envia imediatamente a última leitura conhecida, se existir
+  const last = lastReadings.get(MQTT_TOPIC);
+  if (last) {
+    ws.send(JSON.stringify({ type: 'battery', topic: MQTT_TOPIC, data: last }));
+  }
+
+  ws.isAlive = true;
+  ws.on('pong', () => {
+    ws.isAlive = true;
+  });
+
+  ws.on('close', () => {
+    console.log('[ws] cliente desconectado');
+  });
+
+  ws.on('error', (err) => {
+    console.error('[ws] erro no cliente:', err.message);
+  });
+});
+
+// Ping periódico para detectar e limpar conexões mortas (ex: ESP32 ou browser que caiu)
+const HEARTBEAT_INTERVAL_MS = 30_000;
+const heartbeat = setInterval(() => {
+  wss.clients.forEach((ws) => {
+    if (ws.isAlive === false) {
+      return ws.terminate();
+    }
+    ws.isAlive = false;
+    ws.ping();
+  });
+}, HEARTBEAT_INTERVAL_MS);
+
+wss.on('close', () => clearInterval(heartbeat));
+
+// ---------- MQTT (HiveMQ Cloud) ----------
+const mqttClient = mqtt.connect({
+  host: HIVEMQ_HOST,
+  port: Number(HIVEMQ_PORT),
+  protocol: 'mqtts', // TLS obrigatório no HiveMQ Cloud
+  username: HIVEMQ_USERNAME,
+  password: HIVEMQ_PASSWORD,
+  clientId: `battery-backend-${Math.random().toString(16).slice(2, 10)}`,
+  reconnectPeriod: 3000, // tenta reconectar a cada 3s se cair
+  connectTimeout: 10_000,
+});
+
+mqttClient.on('connect', () => {
+  console.log('[mqtt] conectado ao HiveMQ Cloud');
+  mqttClient.subscribe(MQTT_TOPIC, { qos: 1 }, (err) => {
+    if (err) {
+      console.error('[mqtt] falha ao inscrever no tópico:', err.message);
+    } else {
+      console.log(`[mqtt] inscrito no tópico "${MQTT_TOPIC}"`);
+    }
+  });
+});
+
+mqttClient.on('reconnect', () => {
+  console.log('[mqtt] tentando reconectar...');
+});
+
+mqttClient.on('error', (err) => {
+  console.error('[mqtt] erro:', err.message);
+});
+
+mqttClient.on('message', (topic, payloadBuffer) => {
+  const raw = payloadBuffer.toString();
+
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch (err) {
+    console.warn('[mqtt] payload não é JSON válido, repassando como texto bruto:', raw);
+    data = { raw };
+  }
+
+  // Adiciona timestamp de recebimento no servidor, caso o ESP32 não envie um
+  if (!data.timestamp) {
+    data.timestamp = new Date().toISOString();
+  }
+
+  lastReadings.set(topic, data);
+
+  broadcast({ type: 'battery', topic, data });
+});
+
+// ---------- Start ----------
+//server.listen(PORT, () => {
+//  console.log(`[http/ws] servidor escutando na porta ${PORT}`);
+//  console.log(`[http/ws] WebSocket disponível em ws://localhost:${PORT}/ws`);
+//});
+
+// Encerramento limpo
+process.on('SIGTERM', () => {
+  console.log('Encerrando...');
+  mqttClient.end(true, () => process.exit(0));
+}
